@@ -5,18 +5,18 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "format": "prettier --write \"src/**/*.ts\"",
-    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "format": "prettier --write \"server/src/**/*.ts\"",
+    "start": "ts-node --project server/tsconfig.json -r tsconfig-paths/register server/src/main.ts",
     "start:dev": "nodemon",
     "start:debug": "nodemon --config nodemon-debug.json",
-    "prestart:prod": "rimraf dist && tsc",
+    "prestart:prod": "rimraf dist && tsc --project server",
     "start:prod": "node dist/main.js",
     "start:hmr": "node dist/server",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "lint": "tslint -p server/tsconfig.json -c tslint.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "jest --config ./server/test/jest-e2e.json",
     "webpack": "webpack --config webpack.config.js"
   },
   "dependencies": {
@@ -52,12 +52,12 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "server/src",
     "testRegex": ".spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "coverageDirectory": "../coverage",
+    "coverageDirectory": "../../coverage",
     "testEnvironment": "node"
   }
 }
