@@ -5,19 +5,19 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "format": "prettier --write \"server/src/**/*.ts\"",
+    "format": "prettier --config server/.prettierrc --write \"server/src/**/*.ts\"",
     "start": "ts-node --project server/tsconfig.json -r tsconfig-paths/register server/src/main.ts",
-    "start:dev": "nodemon",
-    "start:debug": "nodemon --config nodemon-debug.json",
+    "start:dev": "nodemon --config server/nodemon.json",
+    "start:debug": "nodemon --config server/nodemon-debug.json",
     "prestart:prod": "rimraf dist && tsc --project server",
     "start:prod": "node dist/main.js",
     "start:hmr": "node dist/server",
-    "lint": "tslint -p server/tsconfig.json -c tslint.json",
+    "lint": "tslint -p server/tsconfig.json -c server/tslint.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./server/test/jest-e2e.json",
-    "webpack": "webpack --config webpack.config.js"
+    "webpack": "webpack --config server/webpack.config.js"
   },
   "dependencies": {
     "@nestjs/common": "^5.1.0",
