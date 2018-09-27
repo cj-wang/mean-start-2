@@ -3,7 +3,7 @@
 
 module.exports = function (config) {
   const configuration = {
-    basePath: '',
+    basePath: 'client',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
@@ -16,7 +16,7 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, 'coverage'), reports: [ 'html', 'lcovonly' ],
+      dir: require('path').join(__dirname, '../coverage/client'), reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
     },
     angularCli: {

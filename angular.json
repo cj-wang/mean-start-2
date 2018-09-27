@@ -4,8 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "ngx-admin-demo": {
-      "root": "",
-      "sourceRoot": "src",
+      "root": "client",
+      "sourceRoot": "client/src",
       "projectType": "application",
       "architect": {
         "build": {
@@ -13,14 +13,14 @@
           "options": {
             "preserveSymlinks": true,
             "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
+            "index": "client/src/index.html",
+            "main": "client/src/main.ts",
+            "tsConfig": "client/src/tsconfig.app.json",
+            "polyfills": "client/src/polyfills.ts",
             "assets": [
-              "src/assets",
-              "src/favicon.ico",
-              "src/favicon.png"
+              "client/src/assets",
+              "client/src/favicon.ico",
+              "client/src/favicon.png"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -30,7 +30,7 @@
               "node_modules/socicon/css/socicon.css",
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
-              "src/app/@theme/styles/styles.scss"
+              "client/src/app/@theme/styles/styles.scss"
             ],
             "scripts": [
               "node_modules/pace-js/pace.min.js"
@@ -49,8 +49,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "client/src/environments/environment.ts",
+                  "with": "client/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -76,10 +76,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "karmaConfig": "./karma.conf.js",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
+            "main": "client/src/test.ts",
+            "karmaConfig": "./client/karma.conf.js",
+            "polyfills": "client/src/polyfills.ts",
+            "tsConfig": "client/src/tsconfig.spec.json",
             "scripts": [
               "node_modules/pace-js/pace.min.js"
             ],
@@ -91,21 +91,22 @@
               "node_modules/socicon/css/socicon.css",
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
-              "src/app/@theme/styles/styles.scss"
+              "client/src/app/@theme/styles/styles.scss"
             ],
             "assets": [
-              "src/assets",
-              "src/favicon.ico",
-              "src/favicon.png"
+              "client/src/assets",
+              "client/src/favicon.ico",
+              "client/src/favicon.png"
             ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "tslintConfig": "client/tslint.json",
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "client/src/tsconfig.app.json",
+              "client/src/tsconfig.spec.json"
             ],
             "typeCheck": true,
             "exclude": []
@@ -114,22 +115,23 @@
       }
     },
     "ngx-admin-demo-e2e": {
-      "root": "",
-      "sourceRoot": "",
+      "root": "client",
+      "sourceRoot": "client",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "./protractor.conf.js",
+            "protractorConfig": "./client/protractor.conf.js",
             "devServerTarget": "ngx-admin-demo:serve"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "tslintConfig": "client/tslint.json",
             "tsConfig": [
-              "e2e/tsconfig.e2e.json"
+              "client/e2e/tsconfig.e2e.json"
             ],
             "exclude": []
           }
