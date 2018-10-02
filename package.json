@@ -1,13 +1,13 @@
 {
-  "name": "ngx-admin",
+  "name": "mean-start-2",
   "version": "2.3.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akveo/ngx-admin.git"
+    "url": "git+https://github.com/cj-wang/mean-start-2.git"
   },
   "bugs": {
-    "url": "https://github.com/akveo/ngx-admin/issues"
+    "url": "https://github.com/cj-wang/mean-start-2/issues"
   },
   "browserslist": [
     "> 1%",
