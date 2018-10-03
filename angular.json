@@ -12,7 +12,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "preserveSymlinks": true,
-            "outputPath": "dist",
+            "outputPath": "dist/public",
             "index": "client/src/index.html",
             "main": "client/src/main.ts",
             "tsConfig": "client/src/tsconfig.app.json",

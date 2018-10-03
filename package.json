@@ -16,13 +16,19 @@
   ],
   "scripts": {
     "ng": "ng",
+    "start": "concurrently -n client......,......server \"ng serve  --progress false --proxy-config client/proxy.conf.json\" \"npm run server:start:dev\"",
+    "build": "rimraf dist && npm run client:build:prod && npm run server:webpack",
+    "test": "concurrently -n client......,......server \"ng test --progress false\" \"npm run server:test:watch\"",
+    "test:coverage": "rimraf coverage && concurrently -n client......,......server \"ng test --progress false --code-coverage\" \"jest --watch --coverage\"",
+    "lint": "npm run client:lint:ci && npm run server:lint",
+    "e2e": "npm run client:pree2e && npm run client:e2e && npm run server:test:e2e",
     "conventional-changelog": "conventional-changelog",
-    "prepush": "npm run client:lint:ci",
+    "prepush": "npm run lint",
     "client:start": "ng serve",
     "client:build": "ng build",
     "client:build:prod": "npm run client:build -- --prod --aot",
     "client:test": "ng test",
-    "client:test:coverage": "rimraf coverage && npm run client:test -- --code-coverage",
+    "client:test:coverage": "rimraf coverage/client && npm run client:test -- --code-coverage",
     "client:lint": "ng lint",
     "client:lint:fix": "ng lint ngx-admin-demo --fix",
     "client:lint:styles": "stylelint ./client/src/**/*.scss",
@@ -93,6 +99,7 @@
     "@types/node": "6.0.90",
     "@types/supertest": "^2.0.5",
     "codelyzer": "4.0.2",
+    "concurrently": "^4.0.1",
     "conventional-changelog-cli": "1.3.4",
     "husky": "0.13.3",
     "jasmine-core": "2.6.4",
@@ -132,7 +139,7 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "coverageDirectory": "../../coverage",
+    "coverageDirectory": "../../coverage/server",
     "testEnvironment": "node"
   }
 }
