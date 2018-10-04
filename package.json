@@ -17,7 +17,9 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently -n client......,......server \"ng serve  --progress false --proxy-config client/proxy.conf.json\" \"npm run server:start:dev\"",
-    "build": "rimraf dist && npm run client:build:prod && npm run server:webpack",
+    "start:prod": "node dist/main.js",
+    "prestart:prod": "npm run build",
+    "build": "rimraf dist && ng build --prod --aot && tsc --project server",
     "test": "concurrently -n client......,......server \"ng test --progress false\" \"npm run server:test:watch\"",
     "test:coverage": "rimraf coverage && concurrently -n client......,......server \"ng test --progress false --code-coverage\" \"jest --watch --coverage\"",
     "lint": "npm run client:lint:ci && npm run server:lint",
