@@ -7,7 +7,6 @@ import * as express from 'express';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(express.static(path.join(__dirname, 'public')));
-  app.setGlobalPrefix('/api');
   await app.listen(3000);
 }
 bootstrap();
