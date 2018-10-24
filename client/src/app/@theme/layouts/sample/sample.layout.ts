@@ -9,7 +9,10 @@ import {
   NbThemeService,
 } from '@nebular/theme';
 
+import 'style-loader!angular2-toaster/toaster.css';
+
 import { StateService } from '../../../@core/data/state.service';
+import { NotificationService } from '../../services/notification.service';
 
 // TODO: move layouts into the framework
 @Component({
@@ -57,6 +60,7 @@ import { StateService } from '../../../@core/data/state.service';
         <ngx-theme-settings></ngx-theme-settings>
       </nb-sidebar>
     </nb-layout>
+    <toaster-container [toasterconfig]="notificationService.toasterConfig"></toaster-container>
   `,
 })
 export class SampleLayoutComponent implements OnDestroy {
@@ -113,7 +117,8 @@ export class SampleLayoutComponent implements OnDestroy {
               protected menuService: NbMenuService,
               protected themeService: NbThemeService,
               protected bpService: NbMediaBreakpointsService,
-              protected sidebarService: NbSidebarService) {
+              protected sidebarService: NbSidebarService,
+              protected notificationService: NotificationService) {
     this.stateService.onLayoutState()
       .pipe(takeWhile(() => this.alive))
       .subscribe((layout: string) => this.layout = layout);
