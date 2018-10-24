@@ -25,7 +25,7 @@
     "lint": "npm run client:lint:ci && npm run server:lint",
     "e2e": "npm run client:pree2e && npm run client:e2e && npm run server:test:e2e",
     "conventional-changelog": "conventional-changelog",
-    "prepush": "npm run lint",
+    "_prepush": "npm run lint",
     "client:start": "ng serve",
     "client:build": "ng build",
     "client:build:prod": "npm run client:build -- --prod --aot",
