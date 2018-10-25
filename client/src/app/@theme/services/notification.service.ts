@@ -19,7 +19,7 @@ export class NotificationService {
 
   constructor(public toasterService: ToasterService) { }
 
-  showToast(type: string, title: string, body: string, timeout = 5000, showCloseButton = true) {
+  showToast(type: string, title: string, body = '', timeout = 5000, showCloseButton = true) {
     return this.toasterService.pop({
       type: type,
       title: title,
@@ -29,23 +29,23 @@ export class NotificationService {
     });
   }
 
-  error(title: string, body: string, timeout = 0) {
+  error(title: string, body = '', timeout = 0) {
     return this.showToast('error', title, body, timeout);
   }
 
-  info(title: string, body: string, timeout = 5000) {
+  info(title: string, body = '', timeout = 5000) {
     return this.showToast('info', title, body, timeout);
   }
 
-  wait(title: string, body: string, timeout = 0) {
+  wait(title: string, body = '', timeout = 0) {
     return this.showToast('wait', title, body, timeout, false);
   }
 
-  success(title: string, body: string, timeout = 5000) {
+  success(title: string, body = '', timeout = 5000) {
     return this.showToast('success', title, body, timeout);
   }
 
-  warning(title: string, body: string, timeout = 0) {
+  warning(title: string, body = '', timeout = 0) {
     return this.showToast('warning', title, body, timeout);
   }
 
