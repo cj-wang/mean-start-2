@@ -42,6 +42,7 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import { NotificationService } from './services/notification.service';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -106,6 +107,7 @@ const NB_THEME_PROVIDERS = [
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
   declarations: [...COMPONENTS, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],
+  providers: [NotificationService],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {
