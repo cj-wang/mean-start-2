@@ -5,13 +5,13 @@ import { ToasterConfig, ToasterService, BodyOutputType, Toast } from 'angular2-t
 export class NotificationService {
 
   toasterConfig = new ToasterConfig({
-    animation: 'fade',
-    limit: 5,
+    animation: null,
+    limit: 1,
     tapToDismiss: false,
     positionClass: 'toast-center',
     showCloseButton: true,
     newestOnTop: false,
-    timeout: 5000,
+    timeout: 2000,
     mouseoverTimerStop: true,
     preventDuplicates: false,
     bodyOutputType: BodyOutputType.TrustedHtml,
@@ -33,7 +33,7 @@ export class NotificationService {
     return this.showToast('error', title, body, timeout);
   }
 
-  info(title: string, body = '', timeout = 5000) {
+  info(title: string, body = '', timeout = 2000) {
     return this.showToast('info', title, body, timeout);
   }
 
@@ -41,7 +41,7 @@ export class NotificationService {
     return this.showToast('wait', title, body, timeout, false);
   }
 
-  success(title: string, body = '', timeout = 5000) {
+  success(title: string, body = '', timeout = 2000) {
     return this.showToast('success', title, body, timeout);
   }
 
