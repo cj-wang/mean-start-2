@@ -19,34 +19,54 @@ export class NotificationService {
 
   constructor(public toasterService: ToasterService) { }
 
-  showToast(type: string, title: string, body = '', timeout = 5000, showCloseButton = true) {
+  error(body: string, title = 'Error', timeout = 0, showCloseButton = true) {
     return this.toasterService.pop({
-      type: type,
-      title: title,
+      type: 'error',
       body: body,
+      title: title,
       timeout: timeout,
       showCloseButton: showCloseButton,
     });
   }
 
-  error(title: string, body = '', timeout = 0) {
-    return this.showToast('error', title, body, timeout);
+  info(body: string, title = 'Info', timeout = 2000, showCloseButton = true) {
+    return this.toasterService.pop({
+      type: 'info',
+      body: body,
+      title: title,
+      timeout: timeout,
+      showCloseButton: showCloseButton,
+    });
   }
 
-  info(title: string, body = '', timeout = 2000) {
-    return this.showToast('info', title, body, timeout);
+  wait(body: string, title = 'Processing', timeout = 0, showCloseButton = false) {
+    return this.toasterService.pop({
+      type: 'wait',
+      body: body,
+      title: title,
+      timeout: timeout,
+      showCloseButton: showCloseButton,
+    });
   }
 
-  wait(title: string, body = '', timeout = 0) {
-    return this.showToast('wait', title, body, timeout, false);
+  success(body: string, title = 'Success', timeout = 2000, showCloseButton = true) {
+    return this.toasterService.pop({
+      type: 'success',
+      body: body,
+      title: title,
+      timeout: timeout,
+      showCloseButton: showCloseButton,
+    });
   }
 
-  success(title: string, body = '', timeout = 2000) {
-    return this.showToast('success', title, body, timeout);
-  }
-
-  warning(title: string, body = '', timeout = 0) {
-    return this.showToast('warning', title, body, timeout);
+  warning(body: string, title = 'Warning', timeout = 0, showCloseButton = true) {
+    return this.toasterService.pop({
+      type: 'warning',
+      body: body,
+      title: title,
+      timeout: timeout,
+      showCloseButton: showCloseButton,
+    });
   }
 
   clear(toast?: Toast) {
