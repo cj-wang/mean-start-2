@@ -19,7 +19,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).do((event: HttpEvent<any>) => {}, async (err: any) => {
       if (err instanceof HttpErrorResponse) {
-        this.notificationService.error(err.statusText, err.message);
+        this.notificationService.error(err.error.message);
       }
     });
   }
