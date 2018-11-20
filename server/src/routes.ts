@@ -6,9 +6,11 @@ export const routes: Routes = [
   {
     path: '/api',
     module: ApiModule,
-    children: [{
-      path: '/hello',
-      module: HelloModule,
-    }],
+    children: [
+      {
+        path: '/hello',
+        module: HelloModule,
+      },
+    ],
   },
 ];
