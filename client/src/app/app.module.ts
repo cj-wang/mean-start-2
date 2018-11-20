@@ -25,7 +25,7 @@ import { ToasterModule } from 'angular2-toaster';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    
+
     ToasterModule.forRoot(),
   ],
   bootstrap: [AppComponent],
