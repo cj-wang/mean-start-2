@@ -43,7 +43,6 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
-import { NotificationService } from './services/notification.service';
 import { HttpRequestInterceptor } from './interceptors/http-interceptor';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
@@ -105,13 +104,12 @@ const NB_THEME_PROVIDERS = [
 @NgModule({
   imports: [...BASE_MODULES, ...NB_MODULES,
     HttpClientModule,
-    ToasterModule.forRoot(),
+    ToasterModule.forChild(),
   ],
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
   declarations: [...COMPONENTS, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],
   providers: [
-    NotificationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpRequestInterceptor,
