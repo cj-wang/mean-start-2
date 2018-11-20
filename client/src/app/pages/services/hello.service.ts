@@ -13,7 +13,7 @@ export class HelloService {
     const hello: Hello = {
       name: 'world',
     };
-    return (await this.http.post<Hello>('/api/hello', hello).toPromise()).greeting;
+    return (await this.http.post<Hello>('api/hello', hello).toPromise()).greeting;
   }
 
 }
