@@ -28,10 +28,10 @@ Run `npm start` to start the Angular dev server and the Nest server concurrently
 
 ## Build
 
-Run `npm run build` to build the project. The compiled server files will be stored in the `dist/` directory. The built Angular artifacts will be stored in the `dist/public/` directory.
+Run `npm run build` to build the project. The compiled server files will be stored in the `dist/server/` directory. The built Angular artifacts will be stored in the `dist/client/` directory.
 
 ## Production server
-Run `npm run start:prod` to start in prod mode. The Nest server will serve the built Angular app as static pages. Navigate to `http://localhost:3000/`.
+Run `npm run start:prod` to start the Nest server and it serves the built Angular app as static pages as well. Navigate to `http://localhost:3000/`.
 
 ## Running unit tests
 

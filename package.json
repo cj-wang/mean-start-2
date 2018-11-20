@@ -17,7 +17,7 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently -n client......,......server \"ng serve  --progress false --proxy-config client/proxy.conf.json\" \"npm run server:start:dev\"",
-    "start:prod": "node dist/main.js",
+    "start:prod": "npm run server:start:prod",
     "prestart:prod": "npm run build",
     "build": "rimraf dist && ng build --prod --aot && tsc --project server",
     "test": "concurrently -n client......,......server \"ng test --progress false\" \"npm run server:test:watch\"",
@@ -45,13 +45,13 @@
     "server:start:dev": "nodemon --config server/nodemon.json",
     "server:start:debug": "nodemon --config server/nodemon-debug.json",
     "server:prestart:prod": "rimraf dist && tsc --project server",
-    "server:start:prod": "node dist/main.js",
+    "server:start:prod": "node dist/server/src/main.js",
     "server:start:hmr": "node dist/server",
     "server:lint": "tslint -p server/tsconfig.json -c server/tslint.json",
     "server:test": "jest",
     "server:test:watch": "jest --watch",
     "server:test:cov": "jest --coverage",
-    "server:test:e2e": "jest --config ./server/test/jest-e2e.json",
+    "server:test:e2e": "jest --config ./server/e2e/jest-e2e.json",
     "server:webpack": "webpack --config server/webpack.config.js"
   },
   "dependencies": {
