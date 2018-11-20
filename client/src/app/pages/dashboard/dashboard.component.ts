@@ -1,6 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators/takeWhile' ;
+import { NotificationService } from '../../@theme/services/notification.service';
+import { HelloService } from '../services/hello.service';
 
 interface CardSettings {
   title: string;
@@ -73,7 +75,7 @@ export class DashboardComponent implements OnDestroy {
     ],
   };
 
-  constructor(private themeService: NbThemeService) {
+  constructor(private themeService: NbThemeService, private notificationService: NotificationService, private helloService: HelloService) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
@@ -84,4 +86,10 @@ export class DashboardComponent implements OnDestroy {
   ngOnDestroy() {
     this.alive = false;
   }
+
+  async hello() {
+    const greeting = await this.helloService.hello('world');
+    this.notificationService.success(greeting);
+  }
+
 }

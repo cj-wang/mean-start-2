@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
-describe('AppController (e2e)', () => {
+describe('HelloController (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -20,5 +20,18 @@ describe('AppController (e2e)', () => {
       .get('/api/hello')
       .expect(200)
       .expect('Hello World!');
+  });
+
+  it('/api/hello (POST)', () => {
+    return request(app.getHttpServer())
+      .post('/api/hello')
+      .send({
+        name: 'name',
+      })
+      .expect(200)
+      .expect({
+        name: 'name',
+        greeting: 'Hello name!',
+      });
   });
 });
