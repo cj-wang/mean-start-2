@@ -2,7 +2,7 @@
 
 Full stack [Angular](https://github.com/angular/angular) + [Nest](https://github.com/nestjs/nest).
 
-Client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) template with Angular 6+, Bootstrap 4 and [Nebular](https://github.com/akveo/nebular), integrated with [Nest](https://github.com/nestjs/nest) on the server side.
+Client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) template with Angular 7+, Bootstrap 4 and [Nebular](https://github.com/akveo/nebular), integrated with [Nest](https://github.com/nestjs/nest) on the server side.
 
 <a href="https://akveo.github.io/nebular/"><img src="https://i.imgur.com/ScNTkCX.png"></a>
 
