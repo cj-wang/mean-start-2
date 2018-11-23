@@ -6,7 +6,7 @@ Client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) t
 
 <a href="https://akveo.github.io/nebular/"><img src="https://i.imgur.com/ScNTkCX.png"></a>
 
-<p align="center">Admin template based on Angular 6+, Bootstrap 4 and <a href="https://github.com/akveo/nebular">Nebular</a></p>
+<p align="center">Admin template based on Angular 7+, Bootstrap 4 and <a href="https://github.com/akveo/nebular">Nebular</a></p>
 
 | Corporate Theme |
 |:---------------:|

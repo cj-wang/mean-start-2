@@ -11,7 +11,6 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
 })
 export class HeaderComponent implements OnInit {
 
-
   @Input() position = 'normal';
 
   user: any;
@@ -31,11 +30,13 @@ export class HeaderComponent implements OnInit {
 
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
+
     return false;
   }
 
   toggleSettings(): boolean {
     this.sidebarService.toggle(false, 'settings-sidebar');
+
     return false;
   }
 
