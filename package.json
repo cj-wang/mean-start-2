@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "concurrently -n client......,......server \"ng serve  --progress false --proxy-config client/proxy.conf.json\" \"npm run server:start:dev\"",
+    "start": "concurrently -n client......,......server \"ng serve  --progress false\" \"npm run server:start:dev\"",
     "start:prod": "npm run server:start:prod",
     "prestart:prod": "npm run build",
     "build": "rimraf dist && ng build --prod --aot && tsc --project server",
