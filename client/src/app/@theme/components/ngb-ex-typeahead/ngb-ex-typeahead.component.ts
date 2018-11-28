@@ -6,7 +6,7 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'ngb-ex-typeahead',
   templateUrl: './ngb-ex-typeahead.component.html',
-  styleUrls: ['./ngb-ex-typeahead.component.scss']
+  styleUrls: ['./ngb-ex-typeahead.component.scss'],
 })
 export class NgbExTypeaheadComponent implements OnInit {
 
@@ -40,9 +40,9 @@ export class NgbExTypeaheadComponent implements OnInit {
           this.failed = true;
           this.error = err.error.message || err.error.errorMessage;
           return of([]);
-        })
+        }),
       )),
-      tap(() => this.querying = false)
+      tap(() => this.querying = false),
     );
   }
 
