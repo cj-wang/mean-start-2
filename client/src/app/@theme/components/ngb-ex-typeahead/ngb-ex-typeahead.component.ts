@@ -13,18 +13,18 @@ export class NgbExTypeaheadComponent implements OnInit {
   querying = false;
   failed = false;
   error = '';
-  
+
   constructor(private notificationService: NotificationService) { }
-  
+
   ngOnInit() {
   }
 
   private _query;
-  
+
   @Input() set query(query) {
     this._query = query;
   }
-  
+
   get query() {
     return (text$: Observable<string>) => text$.pipe(
       debounceTime(300),
