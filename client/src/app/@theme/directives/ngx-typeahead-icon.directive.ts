@@ -1,60 +1,55 @@
-import { Directive, OnInit, Input, ElementRef } from '@angular/core';
+import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap, catchError } from 'rxjs/operators';
 import { NotificationService } from '../services/notification.service';
+
+@Component({
+  template: `
+    <i class="fas fa-spinner fa-2x" *ngIf="loading"></i>
+    <i class="fas fa-exclamation-circle fa-2x" *ngIf="error" title="{{error}}"></i>
+  `,
+  styles: ['i {position: absolute; right: -25px; top: 10px;}'],
+})
+export class NgxTypeaheadIconComponent {
+  loading = false;
+  error = null;
+}
 
 @Directive({
   selector: '[ngxTypeaheadIcon]',
 })
 export class NgxTypeaheadIconDirective implements OnInit {
 
-  private _input;
-  private _query;
+  constructor(private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private notificationService: NotificationService) { }
 
-  constructor(private el: ElementRef, private notificationService: NotificationService) { }
-
-  @Input('ngxTypeaheadIcon') set input(input) {
-    this._input = input;
-    this._query = input.ngbTypeahead;
-  }
+  @Input('ngxTypeaheadIcon') ngbTypeahead;
 
   ngOnInit() {
-    this._input.ngbTypeahead = (text$: Observable<string>) => text$.pipe(
+    // create NgxTypeaheadIconComponent
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxTypeaheadIconComponent);
+    const iconComponent = this.viewContainerRef.createComponent(componentFactory).instance;
+    // delegate query function
+    const query = this.ngbTypeahead.ngbTypeahead;
+    this.ngbTypeahead.ngbTypeahead = (text$: Observable<string>) => text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       tap(() => {
-        this.clear();
-        this.showLoading();
+        iconComponent.error = null;
+        iconComponent.loading = true;
       }),
-      switchMap(term => (term.length < 2 ? of([]) : this._query(term)).pipe(
-        tap(() => this.clear()),
+      switchMap(term => (term.length < 2 ? of([]) : query(term)).pipe(
+        tap(() => iconComponent.loading = false),
         catchError((err) => {
           this.notificationService.clear();
-          this.showError(err.error.message || err.error.errorMessage);
+          iconComponent.error = err.error.message || err.error.errorMessage || 'Error';
           return of([]);
         }),
       )),
     );
-    this._input.ngOnDestroy();
-    this._input.ngOnInit();
-  }
-
-  showLoading() {
-    this.el.nativeElement.parentElement.insertAdjacentHTML('beforeend',
-      `<i id="loadingIcon" class="fas fa-spinner fa-2x" *ngIf="querying"
-        style="position: absolute; right: -25px; top: 10px;"></i>`);
-  }
-
-  showError(error: string) {
-    this.el.nativeElement.parentElement.insertAdjacentHTML('beforeend',
-      `<i id="errorIcon" class="fas fa-exclamation-circle fa-2x" *ngIf="querying" title="${error}"
-        style="position: absolute; right: -25px; top: 10px;"></i>`);
-  }
-
-  clear() {
-    this.el.nativeElement.parentElement.querySelectorAll('i').forEach(icon => {
-      this.el.nativeElement.parentElement.removeChild(icon);
-    });
+    this.ngbTypeahead.ngOnDestroy();
+    this.ngbTypeahead.ngOnInit();
   }
 
 }

@@ -67,7 +67,7 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { HttpRequestInterceptor } from './interceptors/http-interceptor';
-import { NgxTypeaheadIconDirective } from './directives/ngx-typeahead-icon.directive';
+import { NgxTypeaheadIconDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-icon.directive';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -117,14 +117,16 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-];
-
-const DIRECTIVES = [
-  NgxTypeaheadIconDirective,
+  NgxTypeaheadIconComponent,
 ];
 
 const ENTRY_COMPONENTS = [
   ThemeSwitcherListComponent,
+  NgxTypeaheadIconComponent,
+];
+
+const DIRECTIVES = [
+  NgxTypeaheadIconDirective,
 ];
 
 const PIPES = [
