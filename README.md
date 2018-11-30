@@ -26,6 +26,8 @@ Client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) t
 * **NotificationService** - show error/info/wait/success/warning toasters
 * **HttpRequestInterceptor** - global HttpClient error handler
 * **[ngxTypeaheadIcon] Directive** - supplement to ngbTypeahead to show loading and error icons
+* TBC
+*
 
 ## Development server
 
