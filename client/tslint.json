@@ -111,10 +111,7 @@
     "component-selector": [
       true,
       "element",
-      [
-        "ngx",
-        "ngb-ex"
-      ],
+      "ngx",
       "kebab-case"
     ],
     "ban": [
