@@ -67,7 +67,7 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { HttpRequestInterceptor } from './interceptors/http-interceptor';
-import { NgbExTypeaheadComponent } from './components/ngb-ex-typeahead/ngb-ex-typeahead.component';
+import { NgxTypeaheadIconDirective } from './directives/ngx-typeahead-icon.directive';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -117,7 +117,10 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
-  NgbExTypeaheadComponent,
+];
+
+const DIRECTIVES = [
+  NgxTypeaheadIconDirective,
 ];
 
 const ENTRY_COMPONENTS = [
@@ -152,8 +155,8 @@ const NB_THEME_PROVIDERS = [
     HttpClientModule,
     ToasterModule.forChild(),
   ],
-  exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...PIPES],
-  declarations: [...COMPONENTS, ...PIPES],
+  exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
+  declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],
   providers: [
     {
