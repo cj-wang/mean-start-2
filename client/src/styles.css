@@ -1,0 +1,20 @@
+.btn {
+  text-transform: none !important;
+}
+
+.col-form-label {
+  padding-top: 12px;
+}
+
+ngb-typeahead-window.dropdown-menu {
+  left: 15px;
+  width: -webkit-calc(100% - 30px);
+  width:    -moz-calc(100% - 30px);
+  width:         calc(100% - 30px);
+  max-height: 245px;
+  overflow-y: auto;
+}
+
+#toast-container > div {
+  width: 40rem !important;
+}
