@@ -22,6 +22,11 @@ Client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) t
 
 <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
 
+## Features added on top
+* **NotificationService** - show error/info/wait/success/warning toasters
+* **HttpRequestInterceptor** - global HttpClient error handler
+* **[ngxTypeaheadIcon] Directive** - supplement to ngbTypeahead to show loading and error icons
+
 ## Development server
 
 Run `npm start` to start the Angular dev server and the Nest server concurrently. Navigate to `http://localhost:4200/` for the dev server. API calls to `http://localhost:4200/api` will be proxied to the Nest server on port 3000. The Angular app or Nest server will automatically reload if you change any of the source files.
