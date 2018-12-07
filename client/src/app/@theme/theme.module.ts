@@ -68,6 +68,7 @@ import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { HttpRequestInterceptor } from './interceptors/http-interceptor';
 import { NgxTypeaheadIconDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-icon.directive';
+import { NgxSelectDirective, NgxSelectOptionComponent, NgxSelectIconComponent } from './directives/ngx-select.directive';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -118,15 +119,20 @@ const COMPONENTS = [
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
   NgxTypeaheadIconComponent,
+  NgxSelectOptionComponent,
+  NgxSelectIconComponent,
 ];
 
 const ENTRY_COMPONENTS = [
   ThemeSwitcherListComponent,
   NgxTypeaheadIconComponent,
+  NgxSelectOptionComponent,
+  NgxSelectIconComponent,
 ];
 
 const DIRECTIVES = [
   NgxTypeaheadIconDirective,
+  NgxSelectDirective,
 ];
 
 const PIPES = [
