@@ -69,6 +69,7 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 import { HttpRequestInterceptor } from './interceptors/http-interceptor';
 import { NgxTypeaheadIconDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-icon.directive';
 import { NgxSelectDirective, NgxSelectOptionComponent, NgxSelectIconComponent } from './directives/ngx-select.directive';
+import { NgxFormGroupRowDirective, NgxFormGroupRowComponent } from './directives/ngx-form-group-row.directive';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -121,6 +122,7 @@ const COMPONENTS = [
   NgxTypeaheadIconComponent,
   NgxSelectOptionComponent,
   NgxSelectIconComponent,
+  NgxFormGroupRowComponent,
 ];
 
 const ENTRY_COMPONENTS = [
@@ -128,11 +130,13 @@ const ENTRY_COMPONENTS = [
   NgxTypeaheadIconComponent,
   NgxSelectOptionComponent,
   NgxSelectIconComponent,
+  NgxFormGroupRowComponent,
 ];
 
 const DIRECTIVES = [
   NgxTypeaheadIconDirective,
   NgxSelectDirective,
+  NgxFormGroupRowDirective,
 ];
 
 const PIPES = [
