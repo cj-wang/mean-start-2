@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap, catchError } from 'rxjs/operators';
 import { NotificationService } from '../services/notification.service';
@@ -20,17 +20,31 @@ export class NgxTypeaheadIconComponent {
 })
 export class NgxTypeaheadIconDirective implements OnInit {
 
-  constructor(private viewContainerRef: ViewContainerRef,
+  constructor(
+    private el: ElementRef,
+    private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private notificationService: NotificationService) { }
 
   @Input('ngxTypeaheadIcon') ngbTypeahead;
 
   ngOnInit() {
+    const inputEl = this.el.nativeElement;
+
     // create NgxTypeaheadIconComponent
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxTypeaheadIconComponent);
-    const iconComponent = this.viewContainerRef.createComponent(componentFactory).instance;
+    const iconComponentRef = this.viewContainerRef.createComponent(componentFactory);
+    const iconEl = iconComponentRef.location.nativeElement;
+    // the input might be moved by other directives e.g. ngxFormGroupRow
+    // here we put the iconComponent into the input temporarily, so the icons will be moved together with the input
+    inputEl.appendChild(iconEl);
+    // afterwards move it out of the input
+    setTimeout(function() {
+      inputEl.parentNode.insertBefore(iconEl, inputEl);
+    }, 0);
+
     // delegate query function
+    const iconComponent = iconComponentRef.instance;
     const query = this.ngbTypeahead.ngbTypeahead;
     this.ngbTypeahead.ngbTypeahead = (text$: Observable<string>) => text$.pipe(
       debounceTime(300),

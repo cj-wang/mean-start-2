@@ -43,18 +43,34 @@ export class NgxSelectDirective implements OnInit {
   @Input() required = true;
 
   async ngOnInit() {
+    const selectEl = this.el.nativeElement;
+
     // create NgxSelectOptionComponent
     const optionComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxSelectOptionComponent);
     const optionComponentRef = this.viewContainerRef.createComponent(optionComponentFactory);
-    while (optionComponentRef.location.nativeElement.firstChild) {
-      this.el.nativeElement.appendChild(optionComponentRef.location.nativeElement.firstChild);
+    const optionEl = optionComponentRef.location.nativeElement;
+    // move the options into the select
+    while (optionEl.firstChild) {
+      selectEl.appendChild(optionEl.firstChild);
     }
+    // setup optionComponent
     const optionComponent = optionComponentRef.instance;
     optionComponent.required = this.required;
+
     // create NgxSelectIconComponent
     const iconComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxSelectIconComponent);
-    const iconComponent = this.viewContainerRef.createComponent(iconComponentFactory).instance;
+    const iconComponentRef = this.viewContainerRef.createComponent(iconComponentFactory);
+    const iconEl = iconComponentRef.location.nativeElement;
+    // the input might be moved by other directives e.g. ngxFormGroupRow
+    // here we put the iconComponent into the input temporarily, so the icons will be moved together with the input
+    selectEl.appendChild(iconEl);
+    // afterwards move it out of the input
+    setTimeout(function() {
+      selectEl.parentNode.insertBefore(iconEl, selectEl);
+    }, 0);
+
     // run query function
+    const iconComponent = iconComponentRef.instance;
     try {
       iconComponent.loading = true;
       optionComponent.options = (await this.ngxSelect().toPromise()).map(option => ({
