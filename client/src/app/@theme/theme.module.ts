@@ -70,6 +70,7 @@ import { HttpRequestInterceptor } from './interceptors/http-interceptor';
 import { NgxTypeaheadIconDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-icon.directive';
 import { NgxSelectDirective, NgxSelectOptionComponent, NgxSelectIconComponent } from './directives/ngx-select.directive';
 import { NgxFormGroupRowDirective, NgxFormGroupRowComponent } from './directives/ngx-form-group-row.directive';
+import { TrueFalseValueDirective } from './directives/true-false-value.directive';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -137,6 +138,7 @@ const DIRECTIVES = [
   NgxTypeaheadIconDirective,
   NgxSelectDirective,
   NgxFormGroupRowDirective,
+  TrueFalseValueDirective,
 ];
 
 const PIPES = [
