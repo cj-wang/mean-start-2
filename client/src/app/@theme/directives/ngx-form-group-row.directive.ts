@@ -35,11 +35,14 @@ export class NgxFormGroupRowDirective implements OnInit {
     const inputContainer = formGroupRowComponentRef.location.nativeElement.firstChild.lastChild;
     this.el.nativeElement.parentNode.insertBefore(formGroupRowComponentRef.location.nativeElement.firstChild, this.el.nativeElement);
     inputContainer.appendChild(this.el.nativeElement);
+
     // generate id if not set
+    this.id = this.id || this.el.nativeElement.id;
     if (! this.id) {
       this.id = uuid();
       this.el.nativeElement.id = this.id;
     }
+
     // setup form group row
     formGroupRowComponentRef.instance.id = this.id;
     formGroupRowComponentRef.instance.label = this.label;
