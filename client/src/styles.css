@@ -6,6 +6,14 @@
   padding-top: 12px;
 }
 
+.form-group.row .form-control-plaintext {
+  padding: 11px 17px;
+}
+
+.form-group.row .custom-control.custom-checkbox {
+  margin: 9px 17px;
+}
+
 ngb-typeahead-window.dropdown-menu {
   left: 15px;
   width: -webkit-calc(100% - 30px);
