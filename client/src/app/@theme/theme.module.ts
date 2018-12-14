@@ -67,9 +67,10 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { HttpRequestInterceptor } from './interceptors/http-interceptor';
+import { NgxFormGroupRowDirective, NgxFormGroupRowComponent } from './directives/ngx-form-group-row.directive';
 import { NgxTypeaheadIconDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-icon.directive';
 import { NgxSelectDirective, NgxSelectOptionComponent, NgxSelectIconComponent } from './directives/ngx-select.directive';
-import { NgxFormGroupRowDirective, NgxFormGroupRowComponent } from './directives/ngx-form-group-row.directive';
+import { NgxCheckboxDirective, NgxCheckboxComponent } from './directives/ngx-checkbox.directive';
 import { TrueFalseValueDirective } from './directives/true-false-value.directive';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
@@ -120,24 +121,27 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  NgxFormGroupRowComponent,
   NgxTypeaheadIconComponent,
   NgxSelectOptionComponent,
   NgxSelectIconComponent,
-  NgxFormGroupRowComponent,
+  NgxCheckboxComponent,
 ];
 
 const ENTRY_COMPONENTS = [
   ThemeSwitcherListComponent,
+  NgxFormGroupRowComponent,
   NgxTypeaheadIconComponent,
   NgxSelectOptionComponent,
   NgxSelectIconComponent,
-  NgxFormGroupRowComponent,
+  NgxCheckboxComponent,
 ];
 
 const DIRECTIVES = [
+  NgxFormGroupRowDirective,
   NgxTypeaheadIconDirective,
   NgxSelectDirective,
-  NgxFormGroupRowDirective,
+  NgxCheckboxDirective,
   TrueFalseValueDirective,
 ];
 
