@@ -27,7 +27,7 @@ export class NgxFormGroupRowDirective implements OnInit {
   @Input() id: string;
   @Input() label: string;
 
-  async ngOnInit() {
+  ngOnInit() {
     // create NgxFormGroupRowComponent
     const formGroupRowComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxFormGroupRowComponent);
     const formGroupRowComponentRef = this.viewContainerRef.createComponent(formGroupRowComponentFactory);

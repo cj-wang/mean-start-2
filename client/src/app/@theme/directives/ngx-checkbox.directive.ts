@@ -25,7 +25,7 @@ export class NgxCheckboxDirective implements OnInit {
 
   @Input() id: string;
 
-  async ngOnInit() {
+  ngOnInit() {
     const inputEl = this.el.nativeElement;
 
     // create NgxCheckboxComponent
