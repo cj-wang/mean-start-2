@@ -1,11 +1,13 @@
-import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
+import { Directive, OnInit, DoCheck, Component, TemplateRef, ViewContainerRef, ComponentFactoryResolver, Renderer2} from '@angular/core';
 import { v4 as uuid } from 'uuid';
 
 @Component({
   template: `
     <div class="form-group row">
       <label for="{{id}}" class="col-sm-2 col-form-label text-right">{{label}}</label>
-      <div class="col-sm-9"></div>
+      <div class="col-sm-9">
+        <ng-content></ng-content>
+      </div>
     </div>
   `,
 })
@@ -17,35 +19,37 @@ export class NgxFormGroupRowComponent {
 @Directive({
   selector: '[ngxFormGroupRow]',
 })
-export class NgxFormGroupRowDirective implements OnInit {
+export class NgxFormGroupRowDirective implements OnInit, DoCheck {
+
+  private templateView;
 
   constructor(
-    private el: ElementRef,
+    private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver) { }
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private renderer: Renderer2) { }
 
-  @Input() id: string;
-  @Input() label: string;
-
-  async ngOnInit() {
+  ngOnInit() {
     // create NgxFormGroupRowComponent
+    this.templateView = this.templateRef.createEmbeddedView({});
     const formGroupRowComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxFormGroupRowComponent);
-    const formGroupRowComponentRef = this.viewContainerRef.createComponent(formGroupRowComponentFactory);
-    // move input into form-group row
-    const inputContainer = formGroupRowComponentRef.location.nativeElement.firstChild.lastChild;
-    this.el.nativeElement.parentNode.insertBefore(formGroupRowComponentRef.location.nativeElement.firstChild, this.el.nativeElement);
-    inputContainer.appendChild(this.el.nativeElement);
+    const formGroupRowComponentRef = this.viewContainerRef.createComponent(
+      formGroupRowComponentFactory, null, this.viewContainerRef.injector, [this.templateView.rootNodes]);
 
+    const inputEl = this.templateView.rootNodes[0];
     // generate id if not set
-    this.id = this.id || this.el.nativeElement.id;
-    if (! this.id) {
-      this.id = uuid();
-      this.el.nativeElement.id = this.id;
+    if (! inputEl.id) {
+      this.renderer.setAttribute(inputEl, 'id', uuid());
     }
 
     // setup form group row
-    formGroupRowComponentRef.instance.id = this.id;
-    formGroupRowComponentRef.instance.label = this.label;
+    const formGroupRowComponent = formGroupRowComponentRef.instance;
+    formGroupRowComponent.id = inputEl.id;
+    formGroupRowComponent.label = inputEl.getAttribute('label');
+  }
+
+  ngDoCheck() {
+    this.templateView.detectChanges();
   }
 
 }
