@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
+import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2 } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 
 @Component({
@@ -21,7 +21,8 @@ export class NgxCheckboxDirective implements OnInit {
   constructor(
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver) { }
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private renderer: Renderer2) { }
 
   @Input() id: string;
 
@@ -31,24 +32,25 @@ export class NgxCheckboxDirective implements OnInit {
     // create NgxCheckboxComponent
     const checkboxComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxCheckboxComponent);
     const checkboxComponentRef = this.viewContainerRef.createComponent(checkboxComponentFactory);
-    const checkboxEl = checkboxComponentRef.location.nativeElement;
+    const checkboxEl = checkboxComponentRef.location.nativeElement.firstChild;
+
     // the input might be moved by other directives e.g. ngxFormGroupRow
     // here we put the checkboxComponent into the input temporarily, so it will be moved together with the input
-    inputEl.appendChild(checkboxEl);
+    this.renderer.appendChild(inputEl, checkboxEl);
     // afterwards move it out of the input and move the input into it
-    setTimeout(function() {
-      inputEl.parentNode.appendChild(checkboxEl);
-      checkboxEl.firstChild.insertBefore(inputEl, checkboxEl.firstChild.firstChild);
+    setTimeout(() => {
+      this.renderer.appendChild(inputEl.parentNode, checkboxEl);
+      this.renderer.insertBefore(checkboxEl, inputEl, checkboxEl.firstChild);
     }, 0);
 
     // generate id if not set
-    this.id = this.id || this.el.nativeElement.id;
+    this.id = this.id || inputEl.id;
     if (! this.id) {
       this.id = uuid();
-      this.el.nativeElement.id = this.id;
+      this.renderer.setAttribute(inputEl, 'id', this.id);
     }
 
-    // setup form group row
+    // setup checkbox componenet
     checkboxComponentRef.instance.id = this.id;
   }
 

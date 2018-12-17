@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
+import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NotificationService } from '../services/notification.service';
 
@@ -34,6 +34,7 @@ export class NgxSelectDirective implements OnInit {
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
+    private renderer: Renderer2,
     private notificationService: NotificationService) { }
 
   @Input() ngxSelect: () => Observable<any>;
@@ -51,7 +52,7 @@ export class NgxSelectDirective implements OnInit {
     const optionEl = optionComponentRef.location.nativeElement;
     // move the options into the select
     while (optionEl.firstChild) {
-      selectEl.appendChild(optionEl.firstChild);
+      this.renderer.appendChild(selectEl, optionEl.firstChild);
     }
     // setup optionComponent
     const optionComponent = optionComponentRef.instance;
@@ -63,10 +64,10 @@ export class NgxSelectDirective implements OnInit {
     const iconEl = iconComponentRef.location.nativeElement;
     // the input might be moved by other directives e.g. ngxFormGroupRow
     // here we put the iconComponent into the input temporarily, so the icons will be moved together with the input
-    selectEl.appendChild(iconEl);
+    this.renderer.appendChild(selectEl, iconEl);
     // afterwards move it out of the input
-    setTimeout(function() {
-      selectEl.parentNode.insertBefore(iconEl, selectEl);
+    setTimeout(() => {
+      this.renderer.insertBefore(selectEl.parentNode, iconEl, selectEl);
     }, 0);
 
     // run query function

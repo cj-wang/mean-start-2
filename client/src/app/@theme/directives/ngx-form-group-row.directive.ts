@@ -1,4 +1,4 @@
-import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
+import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2 } from '@angular/core';
 import { v4 as uuid } from 'uuid';
 
 @Component({
@@ -22,25 +22,29 @@ export class NgxFormGroupRowDirective implements OnInit {
   constructor(
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver) { }
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private renderer: Renderer2) { }
 
   @Input() id: string;
   @Input() label: string;
 
   ngOnInit() {
+    const inputEl = this.el.nativeElement;
+
     // create NgxFormGroupRowComponent
     const formGroupRowComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxFormGroupRowComponent);
     const formGroupRowComponentRef = this.viewContainerRef.createComponent(formGroupRowComponentFactory);
+    const rowEl = formGroupRowComponentRef.location.nativeElement.firstChild;
+
     // move input into form-group row
-    const inputContainer = formGroupRowComponentRef.location.nativeElement.firstChild.lastChild;
-    this.el.nativeElement.parentNode.insertBefore(formGroupRowComponentRef.location.nativeElement.firstChild, this.el.nativeElement);
-    inputContainer.appendChild(this.el.nativeElement);
+    this.renderer.insertBefore(inputEl.parentNode, rowEl, inputEl);
+    this.renderer.appendChild(rowEl.lastChild, inputEl);
 
     // generate id if not set
-    this.id = this.id || this.el.nativeElement.id;
+    this.id = this.id || inputEl.id;
     if (! this.id) {
       this.id = uuid();
-      this.el.nativeElement.id = this.id;
+      this.renderer.setAttribute(inputEl, 'id', this.id);
     }
 
     // setup form group row
