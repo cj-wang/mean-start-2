@@ -39,7 +39,7 @@ export class NgxSelectDirective implements OnInit {
 
   @Input() ngxSelect: () => Observable<any>;
   @Input() valueField: string;
-  @Input() displayField: string;
+  @Input() labelField: string;
   @Input() ngModel: string;
   @Input() required = true;
 
@@ -76,7 +76,7 @@ export class NgxSelectDirective implements OnInit {
       iconComponent.loading = true;
       optionComponent.options = (await this.ngxSelect().toPromise()).map(option => ({
         value: option[this.valueField],
-        display: option[this.displayField],
+        display: option[this.labelField],
         selected: option[this.valueField] === this.ngModel,
       }));
       iconComponent.loading = false;
