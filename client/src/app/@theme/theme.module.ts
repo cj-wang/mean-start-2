@@ -68,7 +68,7 @@ import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { HttpRequestInterceptor } from './interceptors/http-interceptor';
 import { NgxFormGroupRowDirective, NgxFormGroupRowComponent } from './directives/ngx-form-group-row.directive';
-import { NgxTypeaheadIconDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-icon.directive';
+import { NgxTypeaheadDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-directive';
 import { NgxSelectDirective, NgxSelectOptionComponent, NgxSelectIconComponent } from './directives/ngx-select.directive';
 import { NgxCheckboxDirective, NgxCheckboxComponent } from './directives/ngx-checkbox.directive';
 import { TrueFalseValueDirective } from './directives/true-false-value.directive';
@@ -139,7 +139,7 @@ const ENTRY_COMPONENTS = [
 
 const DIRECTIVES = [
   NgxFormGroupRowDirective,
-  NgxTypeaheadIconDirective,
+  NgxTypeaheadDirective,
   NgxSelectDirective,
   NgxCheckboxDirective,
   TrueFalseValueDirective,
