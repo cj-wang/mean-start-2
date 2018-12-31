@@ -122,7 +122,9 @@ export class NgxTypeaheadDirective extends NgbTypeahead implements OnInit {
       if (this.inputFormatter) {
         const _inputFormatter = this.inputFormatter;
         this.inputFormatter = value => {
-          if (this.queryResult[value]) {
+          if (! value) {
+            return '';
+          } else if (this.queryResult[value]) {
             return _inputFormatter(this.queryResult[value]);
           } else {
             this.iconComponent.error = null;
