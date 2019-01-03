@@ -4,14 +4,14 @@ import { NotificationService } from '../services/notification.service';
 
 @Component({
   template: `
-    <option *ngIf="! required" value="">-- {{emptyValueLabel}} --</option>
+    <option *ngIf="! required" value="">{{emptyValueLabel}}</option>
     <option *ngFor="let option of options" value="{{option.value}}" [selected]="option.selected">{{option.display}}</option>
   `,
 })
 export class NgxSelectOptionComponent {
   options = [];
-  required = true;
-  emptyValueLabel = 'None';
+  required: boolean;
+  emptyValueLabel: string;
 }
 
 @Component({
@@ -42,8 +42,8 @@ export class NgxSelectDirective implements OnInit {
   @Input() valueField: string;
   @Input() labelField: string;
   @Input() ngModel: string;
-  @Input() required = true;
-  @Input() emptyValueLabel = 'None';
+  @Input() required = false;
+  @Input() emptyValueLabel = '';
 
   async ngOnInit() {
     const selectEl = this.el.nativeElement;
