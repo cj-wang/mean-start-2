@@ -5,7 +5,7 @@ import { NotificationService } from '../services/notification.service';
 @Component({
   template: `
     <option *ngIf="! required" value="">{{emptyValueLabel}}</option>
-    <option *ngFor="let option of options" value="{{option.value}}" [selected]="option.selected">{{option.display}}</option>
+    <option *ngFor="let option of options" value="{{option.value}}" [selected]="option.selected">{{option.label}}</option>
   `,
 })
 export class NgxSelectOptionComponent {
@@ -28,8 +28,12 @@ export class NgxSelectIconComponent {
 
 @Directive({
   selector: '[ngxSelect]',
+  exportAs: 'ngxSelect',
 })
 export class NgxSelectDirective implements OnInit {
+
+  private optionComponent: NgxSelectOptionComponent;
+  private iconComponent: NgxSelectIconComponent;
 
   constructor(
     private el: ElementRef,
@@ -45,7 +49,7 @@ export class NgxSelectDirective implements OnInit {
   @Input() required = false;
   @Input() emptyValueLabel = '';
 
-  async ngOnInit() {
+  ngOnInit() {
     const selectEl = this.el.nativeElement;
 
     // create NgxSelectOptionComponent
@@ -57,13 +61,14 @@ export class NgxSelectDirective implements OnInit {
       this.renderer.appendChild(selectEl, optionEl.firstChild);
     }
     // setup optionComponent
-    const optionComponent = optionComponentRef.instance;
-    optionComponent.required = this.required;
-    optionComponent.emptyValueLabel = this.emptyValueLabel;
+    this.optionComponent = optionComponentRef.instance;
+    this.optionComponent.required = this.required;
+    this.optionComponent.emptyValueLabel = this.emptyValueLabel;
 
     // create NgxSelectIconComponent
     const iconComponentFactory = this.componentFactoryResolver.resolveComponentFactory(NgxSelectIconComponent);
     const iconComponentRef = this.viewContainerRef.createComponent(iconComponentFactory);
+    this.iconComponent = iconComponentRef.instance;
     const iconEl = iconComponentRef.location.nativeElement;
     // the input might be moved by other directives e.g. ngxFormGroupRow
     // here we put the iconComponent into the input temporarily, so the icons will be moved together with the input
@@ -73,19 +78,21 @@ export class NgxSelectDirective implements OnInit {
       this.renderer.insertBefore(selectEl.parentNode, iconEl, selectEl);
     }, 0);
 
-    // run query function
-    const iconComponent = iconComponentRef.instance;
+    this.loadOptions();
+  }
+
+  async loadOptions() {
     try {
-      iconComponent.loading = true;
-      optionComponent.options = (await this.ngxSelect().toPromise()).map(option => ({
+      this.iconComponent.loading = true;
+      this.optionComponent.options = (await this.ngxSelect().toPromise()).map(option => ({
         value: option[this.valueField],
-        display: option[this.labelField],
+        label: option[this.labelField],
         selected: option[this.valueField] === this.ngModel,
       }));
-      iconComponent.loading = false;
+      this.iconComponent.loading = false;
     } catch (err) {
       this.notificationService.clear();
-      iconComponent.error = err.error.message || err.error.errorMessage || 'Error';
+      this.iconComponent.error = err.error.message || err.error.errorMessage || 'Error';
     }
   }
 
