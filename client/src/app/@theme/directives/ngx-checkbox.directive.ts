@@ -39,7 +39,7 @@ export class NgxCheckboxDirective implements OnInit {
     this.renderer.appendChild(inputEl, checkboxEl);
     // afterwards move it out of the input and move the input into it
     setTimeout(() => {
-      this.renderer.appendChild(inputEl.parentNode, checkboxEl);
+      this.renderer.insertBefore(inputEl.parentNode, checkboxEl, inputEl);
       this.renderer.insertBefore(checkboxEl, inputEl, checkboxEl.firstChild);
     }, 0);
 

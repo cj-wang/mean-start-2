@@ -5,13 +5,16 @@ import { v4 as uuid } from 'uuid';
   template: `
     <div class="form-group row">
       <label for="{{id}}" class="col-sm-2 col-form-label text-right">{{label}}</label>
-      <div class="col-sm-9"></div>
+      <div class="col-sm-9">
+        <small class="form-text text-muted">{{helpText}}</small>
+      </div>
     </div>
   `,
 })
 export class NgxFormGroupRowComponent {
   id: string;
   label: string;
+  helpText: string;
 }
 
 @Directive({
@@ -27,6 +30,7 @@ export class NgxFormGroupRowDirective implements OnInit {
 
   @Input() id: string;
   @Input() label: string;
+  @Input() helpText: string;
 
   ngOnInit() {
     const inputEl = this.el.nativeElement;
@@ -38,7 +42,7 @@ export class NgxFormGroupRowDirective implements OnInit {
 
     // move input into form-group row
     this.renderer.insertBefore(inputEl.parentNode, rowEl, inputEl);
-    this.renderer.appendChild(rowEl.lastChild, inputEl);
+    this.renderer.insertBefore(rowEl.lastChild, inputEl, rowEl.lastChild.firstChild);
 
     // generate id if not set
     this.id = this.id || inputEl.id;
@@ -48,8 +52,10 @@ export class NgxFormGroupRowDirective implements OnInit {
     }
 
     // setup form group row
-    formGroupRowComponentRef.instance.id = this.id;
-    formGroupRowComponentRef.instance.label = this.label;
+    const formGroupRowComponen = formGroupRowComponentRef.instance;
+    formGroupRowComponen.id = this.id;
+    formGroupRowComponen.label = this.label;
+    formGroupRowComponen.helpText = this.helpText;
   }
 
 }
