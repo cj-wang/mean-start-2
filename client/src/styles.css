@@ -7,11 +7,11 @@
 }
 
 .form-group.row .form-control-plaintext {
-  padding: 11px 17px;
+  padding: 11px 0;
 }
 
 .form-group.row .custom-control.custom-checkbox {
-  margin: 9px 17px;
+  margin: 9px 0;
 }
 
 ngb-typeahead-window.dropdown-menu {
