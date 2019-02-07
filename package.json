@@ -72,6 +72,7 @@
     "@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
+    "angular-in-memory-web-api": "^0.6.0",
     "angular2-toaster": "6.0.0",
     "bootstrap": "4.0.0",
     "classlist.js": "1.1.20150312",
