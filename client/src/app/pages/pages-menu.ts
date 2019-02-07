@@ -8,6 +8,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Tour of Heroes',
+    icon: 'nb-person',
+    link: '/pages/heroes/dashboard',
+  },
+  {
     title: 'FEATURES',
     group: true,
   },
