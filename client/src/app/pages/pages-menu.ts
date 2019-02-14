@@ -10,7 +10,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Tour of Heroes',
     icon: 'nb-person',
-    link: '/pages/heroes/dashboard',
+    children: [
+      {
+        title: 'Dashboard',
+        link: '/pages/heroes/dashboard',
+      },
+      {
+        title: 'Heroes',
+        link: '/pages/heroes/heroes',
+      },
+    ],
   },
   {
     title: 'FEATURES',
