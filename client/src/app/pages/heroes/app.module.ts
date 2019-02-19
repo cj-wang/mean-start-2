@@ -2,9 +2,6 @@ import { NgModule }       from '@angular/core';
 
 import { ThemeModule } from '../../@theme/theme.module';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
-
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent }         from './app.component';
@@ -19,14 +16,7 @@ import { MessageService } from './message.service';
 @NgModule({
   imports: [
     ThemeModule,
-    AppRoutingModule,
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
@@ -38,7 +28,6 @@ import { MessageService } from './message.service';
   ],
   providers: [
     HeroService,
-    InMemoryDataService,
     MessageService
   ],
   bootstrap: [ AppComponent ]
