@@ -9,9 +9,9 @@ The client application is based on [ngx-admin](https://github.com/akveo/ngx-admi
 [Live Demo](https://mean-start-2.herokuapp.com) with upgraded [Tour of Heroes](https://mean-start-2.herokuapp.com/#/pages/heroes/dashboard) built with this framework.
 
 Major changes to the original Tour of Heroes:
--	Heroes `AppModule` as a lazy loading feature module 0645fed0c5d716325a5f8064f7778b9c719deb0c 34923b4d21bbc5170da8356554e148252bb811ce
--	Import `ThemeModule` to make use of the features provided by the framework f2d20813fa12d113eaf40ac9ed1fa7df3af8e265
--	Real server APIs built with Nest ceb40ba252d7be6c73a73c3a25bd60021bebd350
+-	Heroes `AppModule` as a lazy loading feature module https://github.com/cj-wang/mean-start-2/commit/0645fed0c5d716325a5f8064f7778b9c719deb0c https://github.com/cj-wang/mean-start-2/commit/34923b4d21bbc5170da8356554e148252bb811ce
+-	Import `ThemeModule` to make use of the features provided by the framework https://github.com/cj-wang/mean-start-2/commit/f2d20813fa12d113eaf40ac9ed1fa7df3af8e265
+-	Real server APIs built with Nest https://github.com/cj-wang/mean-start-2/commit/ceb40ba252d7be6c73a73c3a25bd60021bebd350
 - *TBC*
 
 ## Development server
