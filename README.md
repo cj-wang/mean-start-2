@@ -31,14 +31,14 @@ Client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) t
 
 ## Development server
 
-Run `npm start` to start the Angular dev server and the Nest server concurrently. Navigate to `http://localhost:4200/` for the dev server. API calls to `http://localhost:4200/api` will be proxied to the Nest server on port 3000. The Angular app or Nest server will automatically reload if you change any of the source files.
+Run `npm run dev` to start the Angular dev server and the Nest server concurrently. Navigate to `http://localhost:4200/` for the dev server. API calls to `http://localhost:4200/api` will be proxied to the Nest server on port 3000. The Angular app or Nest server will automatically reload if you change any of the source files.
 
 ## Build
 
 Run `npm run build` to build the project. The compiled server files will be stored in the `dist/server/` directory. The built Angular artifacts will be stored in the `dist/client/` directory.
 
 ## Production server
-Run `npm run start:prod` to start the Nest server and it serves the built Angular app as static pages as well. Navigate to `http://localhost:3000/`.
+Run `npm start` to start the Nest server and it serves the built Angular app as static pages as well. Navigate to `http://localhost:3000/`.
 
 ## Running unit tests
 
