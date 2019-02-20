@@ -2,43 +2,30 @@
 
 Full stack [Angular](https://github.com/angular/angular) + [Nest](https://github.com/nestjs/nest).
 
-Client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) template with Angular 7+, Bootstrap 4 and [Nebular](https://github.com/akveo/nebular), integrated with [Nest](https://github.com/nestjs/nest) on the server side.
+The client application is based on [ngx-admin](https://github.com/akveo/ngx-admin) template with Angular 7+, Bootstrap 4 and [Nebular](https://github.com/akveo/nebular), integrated with [Nest](https://github.com/nestjs/nest) as the server-side framework.
 
-<a href="https://akveo.github.io/nebular/"><img src="https://i.imgur.com/ScNTkCX.png"></a>
+## Demo
 
-<p align="center">Admin template based on Angular 7+, Bootstrap 4 and <a href="https://github.com/akveo/nebular">Nebular</a></p>
+[Live Demo](https://mean-start-2.herokuapp.com) with upgraded [Tour of Heroes](https://mean-start-2.herokuapp.com/#/pages/heroes/dashboard) built with this framework.
 
-| Corporate Theme |
-|:---------------:|
-|<a target="_blank" href="http://akveo.com/ngx-admin/#/pages/dashboard?theme=corporate&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes"><img src="https://i.imgur.com/axbJYdN.png"/></a>|
-
-| Cosmic Theme | Light Theme |
-|:------------:|:--------------:|
-|<a target="_blank" href="http://akveo.com/ngx-admin/#/pages/dashboard?theme=cosmic&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes"><img src="https://i.imgur.com/FgRZcqL.png"/></a>|<a target="_blank" href="http://akveo.com/ngx-admin/#/pages/dashboard?theme=default&utm_source=github&utm_medium=ngx_admin_readme&utm_campaign=themes"><img src="https://i.imgur.com/fozHlRJ.png"/></a>|
-
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-<p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-
-## Features added on top
-* **NotificationService** - show error/info/wait/success/warning toasters
-* **HttpRequestInterceptor** - global HttpClient error handler
-* **[ngxTypeaheadIcon] Directive** - supplement to ngbTypeahead to show loading and error icons
-* TBC
-*
+Major changes to the original Tour of Heroes:
+-	Heroes `AppModule` as a lazy loading feature module 0645fed0c5d716325a5f8064f7778b9c719deb0c 34923b4d21bbc5170da8356554e148252bb811ce
+-	Import `ThemeModule` to make use of the features provided by the framework f2d20813fa12d113eaf40ac9ed1fa7df3af8e265
+-	Real server APIs built with Nest ceb40ba252d7be6c73a73c3a25bd60021bebd350
+- *TBC*
 
 ## Development server
 
-Run `npm run dev` to start the Angular dev server and the Nest server concurrently. Navigate to `http://localhost:4200/` for the dev server. API calls to `http://localhost:4200/api` will be proxied to the Nest server on port 3000. The Angular app or Nest server will automatically reload if you change any of the source files.
+Run `npm run dev` to start the Angular dev server and the Nest server concurrently. Navigate to `http://localhost:4200/` for the dev server. API calls to `http://localhost:4200/api` will be proxied to the Nest server running on port 3000. The Angular app or Nest server will automatically reload if you change any of the source files.
 
 ## Build
 
 Run `npm run build` to build the project. The compiled server files will be stored in the `dist/server/` directory. The built Angular artifacts will be stored in the `dist/client/` directory.
 
 ## Production server
-Run `npm start` to start the Nest server and it serves the built Angular app as static pages as well. Navigate to `http://localhost:3000/`.
+
+Run `npm start` to start the Nest server and it will serve the server APIs and the built Angular app as static pages as well. Navigate to `http://localhost:3000/` for the app.
+> This is just to demonstrate the simplest way to run the app in production mode, not suitable for real world deployments.
 
 ## Running unit tests
 
