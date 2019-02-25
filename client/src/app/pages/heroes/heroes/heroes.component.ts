@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NotificationService } from '../../../@theme/services/notification.service';
+
 import { Hero } from '../../../../../../shared/hero';
 import { HeroService } from '../hero.service';
 
@@ -11,7 +13,7 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private notification: NotificationService) { }
 
   ngOnInit() {
     this.getHeroes();
@@ -27,13 +29,16 @@ export class HeroesComponent implements OnInit {
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
+        this.notification.success(`Hero ${hero.name} added`);
         this.heroes.push(hero);
       });
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
+    this.heroService.deleteHero(hero).subscribe(() => {
+      this.notification.success(`Hero ${hero.name} deleted`);
+    });
   }
 
 }

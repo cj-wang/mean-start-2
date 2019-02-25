@@ -4,6 +4,7 @@ import { HeroesComponent } from './heroes.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ThemeModule } from '../../../@theme/theme.module';
+import { ToasterService } from 'angular2-toaster';
 
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
@@ -20,7 +21,7 @@ describe('HeroesComponent', () => {
         HttpClientTestingModule,
         ThemeModule
       ],
-      providers: [ HeroService, MessageService ]
+      providers: [ HeroService, MessageService, ToasterService ]
     })
     .compileComponents();
   }));
