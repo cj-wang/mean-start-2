@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { HEROES } from '../../../../../../shared/mock-heroes';
 import { HeroService } from '../hero.service';
 import { ThemeModule } from '../../../@theme/theme.module';
+import { ToasterService } from 'angular2-toaster';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -28,7 +29,8 @@ describe('DashboardComponent', () => {
         ThemeModule
       ],
       providers: [
-        { provide: HeroService, useValue: heroService }
+        { provide: HeroService, useValue: heroService },
+        ToasterService
       ]
     })
     .compileComponents();
