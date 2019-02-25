@@ -1,11 +1,13 @@
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes" class="col-1-4"
-      routerLink="../detail/{{hero.id}}">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
+<nb-card class="border-0">
+  <nb-card-header class="pb-0">Top Heroes</nb-card-header>
+  <nb-card-body>
+    <div class="card-deck">
+      <div class="card border-0" *ngFor="let hero of heroes">
+        <div class="card-body p-0" routerLink="../detail/{{hero.id}}">
+          <h4 class="card-title text-center p-4 m-0 rounded module hero">{{hero.name}}</h4>
+        </div>
+      </div>
     </div>
-  </a>
-</div>
-
-<app-hero-search></app-hero-search>
+    <app-hero-search></app-hero-search>
+  </nb-card-body>
+</nb-card>

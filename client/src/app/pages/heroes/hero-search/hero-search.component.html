@@ -1,13 +1,20 @@
-<div id="search-component">
-  <h4>Hero Search</h4>
-
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-  <ul class="search-result">
-    <li *ngFor="let hero of heroes$ | async" >
-      <a routerLink="../detail/{{hero.id}}">
-        {{hero.name}}
-      </a>
-    </li>
-  </ul>
-</div>
+<nb-card class="border-0">
+  <nb-card-header class="pb-0">Hero Search</nb-card-header>
+  <nb-card-body>
+    <form>
+      <div class="form-group row">
+        <label for="heroName" class="col-sm-2 col-form-label text-right">Search hero:</label>
+        <div class="col-sm-10">
+          <input #searchBox type="text" class="form-control" (input)="search(searchBox.value)" placeholder="Search hero by name"/>
+          <ul class="search-result">
+            <li *ngFor="let hero of heroes$ | async" >
+              <a routerLink="../detail/{{hero.id}}">
+                {{hero.name}}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

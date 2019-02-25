@@ -7,6 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { HEROES } from '../../../../../../shared/mock-heroes';
 import { HeroService } from '../hero.service';
+import { ThemeModule } from '../../../@theme/theme.module';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -23,7 +24,8 @@ describe('DashboardComponent', () => {
         HeroSearchComponent
       ],
       imports: [
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule.withRoutes([]),
+        ThemeModule
       ],
       providers: [
         { provide: HeroService, useValue: heroService }
@@ -44,7 +46,7 @@ describe('DashboardComponent', () => {
   });
 
   it('should display "Top Heroes" as headline', () => {
-    expect(fixture.nativeElement.querySelector('h3').textContent).toEqual('Top Heroes');
+    expect(fixture.nativeElement.querySelector('nb-card-header').textContent).toEqual('Top Heroes');
   });
 
   it('should call heroService', async(() => {
@@ -52,7 +54,7 @@ describe('DashboardComponent', () => {
     }));
 
   it('should display 4 links', async(() => {
-    expect(fixture.nativeElement.querySelectorAll('a').length).toEqual(4);
+    expect(fixture.nativeElement.querySelectorAll('.module.hero').length).toEqual(4);
   }));
 
 });

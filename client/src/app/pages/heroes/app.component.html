@@ -1,3 +1,9 @@
-<h1>{{title}}</h1>
-<nb-route-tabset [tabs]="[{title: 'Dashboard', route: '/pages/heroes/dashboard'}, {title: 'Heroes', route: '/pages/heroes/heroes'}]"></nb-route-tabset>
-<app-messages></app-messages>
+<nb-card class="border-0">
+  <nb-card-header class="pb-0">{{title}}</nb-card-header>
+  <nb-card-body>
+    <nb-route-tabset [tabs]="[{title: 'Dashboard', route: '/pages/heroes/dashboard'}, {title: 'Heroes', route: '/pages/heroes/heroes'}]"></nb-route-tabset>
+  </nb-card-body>
+  <nb-card-footer>
+    <app-messages></app-messages>
+  </nb-card-footer>
+</nb-card>
