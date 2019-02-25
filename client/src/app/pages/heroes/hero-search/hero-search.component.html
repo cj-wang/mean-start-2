@@ -5,14 +5,8 @@
       <div class="form-group row">
         <label for="heroName" class="col-sm-2 col-form-label text-right">Search hero:</label>
         <div class="col-sm-10">
-          <input #searchBox type="text" class="form-control" (input)="search(searchBox.value)" placeholder="Search hero by name"/>
-          <ul class="search-result">
-            <li *ngFor="let hero of heroes$ | async" >
-              <a routerLink="../detail/{{hero.id}}">
-                {{hero.name}}
-              </a>
-            </li>
-          </ul>
+          <input type="text" class="form-control" placeholder="Search hero by name"
+            [ngxTypeahead]="search" valueField="id" labelField="name" (selectItem)="select($event.item)"/>
         </div>
       </div>
     </form>
