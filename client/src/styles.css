@@ -23,6 +23,10 @@ ngb-typeahead-window.dropdown-menu {
   overflow-y: auto;
 }
 
+nb-card-body {
+  overflow: visible !important;
+}
+
 #toast-container > div {
   width: 40rem !important;
 }
