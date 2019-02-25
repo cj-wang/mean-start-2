@@ -2,13 +2,8 @@
   <nb-card-header class="pb-0">Hero Search</nb-card-header>
   <nb-card-body>
     <form>
-      <div class="form-group row">
-        <label for="heroName" class="col-sm-2 col-form-label text-right">Search hero:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" placeholder="Search hero by name"
-            [ngxTypeahead]="search" valueField="id" labelField="name" (selectItem)="select($event.item)"/>
-        </div>
-      </div>
+      <input ngxFormGroupRow label="Search hero" type="text" class="form-control" placeholder="Search hero by name"
+        [ngxTypeahead]="search" valueField="id" labelField="name" (selectItem)="select($event.item)"/>
     </form>
   </nb-card-body>
 </nb-card>
