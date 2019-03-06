@@ -4,8 +4,8 @@ import { v4 as uuid } from 'uuid';
 @Component({
   template: `
     <div class="form-group row">
-      <label for="{{id}}" class="col-sm-2 col-form-label text-right">{{label}}</label>
-      <div class="col-sm-9">
+      <label for="{{id}}" class="col-lg-2 col-form-label text-lg-right">{{label}}</label>
+      <div class="col-lg-9">
         <small class="form-text text-muted">{{helpText}}</small>
       </div>
     </div>
