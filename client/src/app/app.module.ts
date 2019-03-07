@@ -18,7 +18,7 @@ import { ToasterModule } from 'angular2-toaster';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'mean-start-2'}),
     BrowserAnimationsModule,
     AppRoutingModule,
 
