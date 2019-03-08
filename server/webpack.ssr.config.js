@@ -11,7 +11,7 @@ const WebpackConfigFactory = require('@nestjs/ng-universal')
  */
 const config = WebpackConfigFactory.create(webpack, {
   // This is our Nest server for Dynamic universal
-  server: './server/src/main.ts',
+  server: './server/src/main.ssr.ts',
   // This is an example of Static prerendering (generative)
   // prerender: './server/src/prerender.ts',
 }, __dirname);
