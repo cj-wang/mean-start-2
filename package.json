@@ -17,9 +17,9 @@
   "scripts": {
     "ng": "ng",
     "dev": "concurrently -n client......,......server \"ng serve  --progress false\" \"npm run server:start:dev\"",
-    "start": "node dist/server/src/main.ssr",
+    "start": "node dist/server",
     "postinstall": "npm run build",
-    "build": "rimraf dist && npm run client:build:prod && npm run client:build:ssr && npm run server:build:ssr",
+    "build": "rimraf dist && npm run client:build:prod && npm run client:build:ssr && npm run server:webpack:ssr",
     "test": "concurrently -n client......,......server \"ng test --progress false\" \"npm run server:test:watch\"",
     "test:coverage": "rimraf coverage && concurrently -n client......,......server \"ng test --progress false --code-coverage\" \"jest --watch --coverage\"",
     "lint": "npm run client:lint:ci && npm run server:lint",
@@ -54,7 +54,7 @@
     "server:test:cov": "jest --coverage",
     "server:test:e2e": "jest --config ./server/e2e/jest-e2e.json",
     "server:webpack": "webpack --config server/webpack.config.js",
-    "server:build:ssr": "tsc --project server/tsconfig.ssr.json"
+    "server:webpack:ssr": "webpack --config server/webpack.ssr.config.js --progress --colors"
   },
   "dependencies": {
     "@angular/animations": "^7.0.3",
@@ -74,6 +74,7 @@
     "@nebular/theme": "3.0.0",
     "@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
+    "@nestjs/ng-universal": "^0.3.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "@nguniversal/express-engine": "^7.1.0",
     "@nguniversal/module-map-ngfactory-loader": "^7.1.0",
