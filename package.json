@@ -18,7 +18,7 @@
     "ng": "ng",
     "dev": "concurrently -n client......,......server \"ng serve  --progress false\" \"npm run server:start:dev\"",
     "start": "node dist/server/src/main.ssr",
-    "postinstall": "npm run compile_@nebular_theme && npm run build",
+    "postinstall": "npm run build",
     "build": "rimraf dist && npm run client:build:prod && npm run client:build:ssr && npm run server:build:ssr",
     "test": "concurrently -n client......,......server \"ng test --progress false\" \"npm run server:test:watch\"",
     "test:coverage": "rimraf coverage && concurrently -n client......,......server \"ng test --progress false --code-coverage\" \"jest --watch --coverage\"",
@@ -54,8 +54,7 @@
     "server:test:cov": "jest --coverage",
     "server:test:e2e": "jest --config ./server/e2e/jest-e2e.json",
     "server:webpack": "webpack --config server/webpack.config.js",
-    "server:build:ssr": "tsc --project server/tsconfig.ssr.json",
-    "compile_@nebular_theme": "babel node_modules/@nebular/theme -d node_modules/@nebular/theme --presets @babel/preset-env"
+    "server:build:ssr": "tsc --project server/tsconfig.ssr.json"
   },
   "dependencies": {
     "@angular/animations": "^7.0.3",
@@ -100,12 +99,9 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.10.2",
-    "@angular/cli": "^7.0.3",
     "@angular/compiler-cli": "^7.0.3",
+    "@angular/cli": "^7.0.3",
     "@angular/language-service": "7.0.0",
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
     "@compodoc/compodoc": "1.0.1",
     "@fortawesome/fontawesome-free": "^5.2.0",
     "@nestjs/testing": "^5.1.0",
