@@ -6,7 +6,7 @@ The client application is based on [ngx-admin](https://github.com/akveo/ngx-admi
 
 ## Demo
 
-[Live Demo](https://mean-start-2.herokuapp.com) with upgraded [Tour of Heroes](https://mean-start-2.herokuapp.com/#/pages/heroes/dashboard).
+[Live Demo](https://mean-start-2.herokuapp.com) with upgraded [Tour of Heroes](https://mean-start-2.herokuapp.com/pages/heroes/dashboard).
 
 ## Development server
 
