@@ -166,7 +166,7 @@ const NB_THEME_PROVIDERS = [
   ...NbDialogModule.forRoot().providers,
   ...NbWindowModule.forRoot().providers,
   ...NbToastrModule.forRoot().providers,
-  
+
   ...ToasterModule.forRoot().providers,
 ];
 
