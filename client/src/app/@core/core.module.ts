@@ -73,6 +73,11 @@ export const NB_CORE_PROVIDERS = [
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
   AnalyticsService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpRequestInterceptor,
+    multi: true,
+  },
 ];
 
 @NgModule({
@@ -83,13 +88,6 @@ export const NB_CORE_PROVIDERS = [
     NbAuthModule,
   ],
   declarations: [],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpRequestInterceptor,
-      multi: true,
-    },
-  ],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
