@@ -1,6 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToasterModule } from 'angular2-toaster';
@@ -66,7 +65,6 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
-import { HttpRequestInterceptor } from './interceptors/http-interceptor';
 import { NgxFormGroupRowDirective, NgxFormGroupRowComponent } from './directives/ngx-form-group-row.directive';
 import { NgxTypeaheadDirective, NgxTypeaheadIconComponent } from './directives/ngx-typeahead-directive';
 import { NgxSelectDirective, NgxSelectOptionComponent, NgxSelectIconComponent } from './directives/ngx-select.directive';
@@ -175,13 +173,6 @@ const NB_THEME_PROVIDERS = [
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
   declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpRequestInterceptor,
-      multi: true,
-    },
-  ],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders {

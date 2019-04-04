@@ -9,7 +9,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
-import { NotificationService } from '../services/notification.service';
+import { NotificationService } from '../../@theme/services/notification.service';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
