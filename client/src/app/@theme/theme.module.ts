@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToasterModule } from 'angular2-toaster';
@@ -170,7 +170,6 @@ const NB_THEME_PROVIDERS = [
 
 @NgModule({
   imports: [...BASE_MODULES, ...NB_MODULES,
-    HttpClientModule,
     ToasterModule.forChild(),
   ],
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],

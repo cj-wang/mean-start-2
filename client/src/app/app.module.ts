@@ -7,6 +7,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { ToasterModule } from 'angular2-toaster';
   imports: [
     BrowserModule.withServerTransition({appId: 'mean-start-2'}),
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
 
     NgbModule.forRoot(),
