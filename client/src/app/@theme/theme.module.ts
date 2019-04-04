@@ -104,6 +104,8 @@ const NB_MODULES = [
   NbRadioModule,
   NbSelectModule,
   NbTooltipModule,
+
+  ToasterModule.forChild().ngModule,
 ];
 
 const COMPONENTS = [
@@ -164,12 +166,12 @@ const NB_THEME_PROVIDERS = [
   ...NbDialogModule.forRoot().providers,
   ...NbWindowModule.forRoot().providers,
   ...NbToastrModule.forRoot().providers,
+  
+  ...ToasterModule.forRoot().providers,
 ];
 
 @NgModule({
-  imports: [...BASE_MODULES, ...NB_MODULES,
-    ToasterModule.forChild(),
-  ],
+  imports: [...BASE_MODULES, ...NB_MODULES],
   exports: [...BASE_MODULES, ...NB_MODULES, ...COMPONENTS, ...DIRECTIVES, ...PIPES],
   declarations: [...COMPONENTS, ...DIRECTIVES, ...PIPES],
   entryComponents: [...ENTRY_COMPONENTS],
