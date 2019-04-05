@@ -1,6 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { HelloService } from './hello.service';
-import { Hello } from '../../../../shared/hello';
 
 describe('HelloService', () => {
   let service: HelloService;
@@ -15,17 +14,8 @@ describe('HelloService', () => {
   });
   
   describe('hello', () => {
-    it('should return "Hello World!"', () => {
-      expect(service.hello()).toBe('Hello World!');
-    });
-  });
-
-  describe('greeting', () => {
     it('should return "Hello name!"', () => {
-      const hello: Hello = {
-        name: 'name',
-      };
-      expect(service.greeting(hello).greeting).toBe('Hello name!');
+      expect(service.hello('name')).toBe('Hello name!');
     });
   });
 });

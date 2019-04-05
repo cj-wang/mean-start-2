@@ -1,7 +1,13 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
+import { HTTP_INTERCEPTORS, HttpRequest } from '@angular/common/http';
+import {
+  NbAuthModule,
+  NbPasswordAuthStrategy,
+  NbAuthJWTToken,
+  NbAuthJWTInterceptor,
+  NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+} from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
@@ -9,6 +15,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
 import { HttpRequestInterceptor } from './utils/http-interceptor';
+import { AuthGuard } from './utils/auth-guard.service';
 
 const socialLinks = [
   {
@@ -40,9 +47,12 @@ export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
 
     strategies: [
-      NbDummyAuthStrategy.setup({
+      NbPasswordAuthStrategy.setup({
         name: 'email',
-        delay: 3000,
+        token: {
+          class: NbAuthJWTToken,
+          key: 'accessToken',
+        },
       }),
     ],
     forms: {
@@ -78,6 +88,21 @@ export const NB_CORE_PROVIDERS = [
     useClass: HttpRequestInterceptor,
     multi: true,
   },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: NbAuthJWTInterceptor,
+    multi: true,
+  },
+  {
+    provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+    useValue: function (req: HttpRequest<any>) {
+      if (req.url === '/api/auth/refresh-token') {
+        return true;
+      }
+      return false;
+    },
+  },
+  AuthGuard,
 ];
 
 @NgModule({

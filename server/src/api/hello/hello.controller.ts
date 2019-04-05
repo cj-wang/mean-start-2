@@ -1,20 +1,18 @@
-import { Controller, Get, Post, Body, HttpCode } from '@nestjs/common';
+import { Controller, UseGuards, Get, Req } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { HelloService } from './hello.service';
 import { Hello } from '../../../../shared/hello';
 
 @Controller()
+@UseGuards(AuthGuard())
 export class HelloController {
 
   constructor(private readonly helloService: HelloService) {}
 
   @Get()
-  hello(): string {
-    return this.helloService.hello();
-  }
-
-  @Post()
-  @HttpCode(200)
-  greeting(@Body() hello: Hello): Hello {
-    return this.helloService.greeting(hello);
+  hello(@Req() req): Hello {
+    return {
+      greeting: this.helloService.hello(req.user.name),
+    };
   }
 }

@@ -11,7 +11,7 @@ export class DashboardComponent {
   constructor(private notificationService: NotificationService, private helloService: HelloService) { }
 
   async hello() {
-    const greeting = await this.helloService.hello('world');
+    const greeting = await this.helloService.hello();
     this.notificationService.success(greeting);
   }
 

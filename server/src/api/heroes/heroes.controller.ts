@@ -1,8 +1,10 @@
-import { Controller, Post, Body, Get, Param, Put, Delete, ParseIntPipe, Query } from '@nestjs/common';
+import { Controller, UseGuards, Post, Body, Get, Param, Put, Delete, ParseIntPipe, Query } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { Hero } from '../../../../shared/hero';
 import { HeroesService } from './heroes.service';
 
 @Controller()
+@UseGuards(AuthGuard())
 export class HeroesController {
 
   constructor(private readonly heroesService: HeroesService) { }

@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
+import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import { filter } from 'rxjs/operators';
+
+import { JwtPayload } from '../../../../../../shared/jwt-payload.interface';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 
 @Component({
@@ -13,19 +17,30 @@ export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
 
-  user: any;
+  user: JwtPayload;
 
   userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
 
-  constructor(private sidebarService: NbSidebarService,
+  constructor(private authService: NbAuthService,
+              private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private userService: UserService,
-              private analyticsService: AnalyticsService) {
+              private analyticsService: AnalyticsService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.nick);
+    this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
+      if (token.isValid()) {
+        this.user = token.getPayload();
+      }
+    });
+    this.menuService.onItemClick().pipe(
+      filter(menu => menu.tag === 'userMenu' && menu.item.title === 'Log out'),
+    ).subscribe(async menu => {
+      this.authService.logout('email').subscribe(result => {
+        this.router.navigate(['auth/logout']);
+      });
+    });
   }
 
   toggleSidebar(): boolean {
