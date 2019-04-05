@@ -1,20 +1,29 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { NbAuthService } from '@nebular/auth';
+import { CanActivate, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private authService: NbAuthService, private router: Router) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platform: Object,
+    private authService: NbAuthService,
+    private router: Router,
+  ) {}
 
   canActivate() {
-    return this.authService.isAuthenticated().pipe(
-      tap(authenticated => {
-        if (!authenticated) {
-          this.router.navigate(['auth/login']);
-        }
-      }),
-    );
+    if (isPlatformBrowser(this.platform)) {
+      return this.authService.isAuthenticated().pipe(
+        tap(authenticated => {
+          if (!authenticated) {
+            this.router.navigate(['auth/login']);
+          }
+        }),
+      );
+    } else {
+      return true;
+    }
   }
 }
