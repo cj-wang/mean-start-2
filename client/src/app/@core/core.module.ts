@@ -95,7 +95,7 @@ export const NB_CORE_PROVIDERS = [
   },
   {
     provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-    useValue: tokenInterceptorFilter, 
+    useValue: tokenInterceptorFilter,
   },
   AuthGuard,
 ];
@@ -105,7 +105,7 @@ export function tokenInterceptorFilter(req: HttpRequest<any>) {
     return true;
   }
   return false;
-};
+}
 
 @NgModule({
   imports: [
