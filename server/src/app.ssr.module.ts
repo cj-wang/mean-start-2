@@ -4,6 +4,7 @@ import { ApiModule } from './api/api.module';
 import { routes } from './routes';
 import { join } from 'path';
 import { AngularUniversalModule, applyDomino } from '@nestjs/ng-universal';
+import 'localstorage-polyfill';
 
 const BROWSER_DIR = join(process.cwd(), 'dist/client');
 applyDomino(global, join(BROWSER_DIR, 'index.html'));
