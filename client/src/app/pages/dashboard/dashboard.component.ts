@@ -1,18 +1,35 @@
-import { Component } from '@angular/core';
-import { NotificationService } from '../../@theme/services/notification.service';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
+import { JwtPayload } from '../../../../../shared/jwt-payload.interface';
 import { HelloService } from '../services/hello.service';
 
 @Component({
   selector: 'ngx-dashboard',
   templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
-  constructor(private notificationService: NotificationService, private helloService: HelloService) { }
+  user: JwtPayload;
+  greeting: string;
 
-  async hello() {
-    const greeting = await this.helloService.hello();
-    this.notificationService.success(greeting);
+  constructor(
+    private authService: NbAuthService,
+    private router: Router,
+    private helloService: HelloService,
+  ) { }
+
+  ngOnInit() {
+    this.authService.onTokenChange().subscribe(async (token: NbAuthJWTToken) => {
+      if (token.isValid()) {
+        this.user = token.getPayload();
+        this.greeting = await this.helloService.hello();
+      }
+    });
+  }
+
+  login() {
+    this.router.navigate(['auth/login']);
   }
 
 }
