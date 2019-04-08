@@ -49,6 +49,7 @@ export const NB_CORE_PROVIDERS = [
     strategies: [
       NbPasswordAuthStrategy.setup({
         name: 'email',
+        baseEndpoint: 'api/auth/',
         token: {
           class: NbAuthJWTToken,
           key: 'accessToken',
