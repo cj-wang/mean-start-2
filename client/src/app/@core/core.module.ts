@@ -102,7 +102,7 @@ export const NB_CORE_PROVIDERS = [
 ];
 
 export function tokenInterceptorFilter(req: HttpRequest<any>) {
-  if (req.url === '/api/auth/refresh-token') {
+  if (req.url === 'api/auth/refresh-token') {
     return true;
   }
   return false;
