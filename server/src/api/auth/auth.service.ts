@@ -13,9 +13,12 @@ export class AuthService {
       name: loginRequest.email.split('@')[0],
       email: loginRequest.email,
     };
-    const accessToken = this.jwtService.sign(user);
+    const expiresIn = process.env.JWT_EXPIRES || 3600;
+    const accessToken = this.jwtService.sign(user, {
+      expiresIn,
+    });
     return {
-      expiresIn: process.env.JWT_EXPIRES || 3600,
+      expiresIn,
       accessToken,
     };
   }
