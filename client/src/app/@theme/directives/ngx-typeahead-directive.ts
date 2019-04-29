@@ -1,6 +1,7 @@
 import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2,
-  Injector, NgZone, forwardRef } from '@angular/core';
+  Injector, NgZone, forwardRef, Inject, ChangeDetectorRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap, map, catchError } from 'rxjs/operators';
 import { NgbTypeahead, NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -53,16 +54,18 @@ export class NgxTypeaheadDirective extends NgbTypeahead implements OnInit {
   private queryResult: any = {};
 
   constructor(
-      private el: ElementRef,
+      private el: ElementRef<HTMLInputElement>,
       private viewContainerRef: ViewContainerRef,
       private renderer: Renderer2,
-      private componentFactoryResolver: ComponentFactoryResolver,
       injector: Injector,
-      ngZone: NgZone,
+      private componentFactoryResolver: ComponentFactoryResolver,
       config: NgbTypeaheadConfig,
+      ngZone: NgZone,
       live: _Live,
+      @Inject(DOCUMENT) document: any,
+      changeDetector: ChangeDetectorRef,
       private notificationService: NotificationService) {
-    super(el, viewContainerRef, renderer, injector, componentFactoryResolver, config, ngZone, live as any as Live);
+    super(el, viewContainerRef, renderer, injector, componentFactoryResolver, config, ngZone, live as any as Live, document, ngZone, changeDetector);
   }
 
   @Input() valueField: string;
