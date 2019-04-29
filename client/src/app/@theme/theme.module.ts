@@ -47,6 +47,7 @@ import {
   LayoutDirectionSwitcherComponent,
   ThemeSwitcherComponent,
   ThemeSwitcherListComponent,
+  ToggleSettingsButtonComponent,
 } from './components';
 import {
   CapitalizePipe,
@@ -121,6 +122,7 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  ToggleSettingsButtonComponent,
   NgxFormGroupRowComponent,
   NgxTypeaheadIconComponent,
   NgxSelectOptionComponent,

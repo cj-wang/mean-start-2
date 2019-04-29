@@ -9,9 +9,7 @@ import {
   NbThemeService,
 } from '@nebular/theme';
 
-import 'style-loader!angular2-toaster/toaster.css';
-
-import { StateService } from '../../../@core/data/state.service';
+import { StateService } from '../../../@core/utils';
 import { NotificationService } from '../../services/notification.service';
 
 // TODO: move layouts into the framework
@@ -60,6 +58,7 @@ import { NotificationService } from '../../services/notification.service';
         <ngx-theme-settings></ngx-theme-settings>
       </nb-sidebar>
     </nb-layout>
+    <ngx-toggle-settings-button></ngx-toggle-settings-button>
     <toaster-container [toasterconfig]="notificationService.toasterConfig"></toaster-container>
   `,
 })

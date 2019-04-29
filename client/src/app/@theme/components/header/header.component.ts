@@ -6,7 +6,8 @@ import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { filter } from 'rxjs/operators';
 
 import { JwtPayload } from '../../../../../../shared/jwt-payload.interface';
-import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { UserData } from '../../../@core/data/users';
+import { AnalyticsService } from '../../../@core/utils';
 
 @Component({
   selector: 'ngx-header',
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: NbAuthService,
               private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
+              private userService: UserData,
               private analyticsService: AnalyticsService,
               private router: Router) {
   }
@@ -45,12 +47,6 @@ export class HeaderComponent implements OnInit {
 
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
-
-    return false;
-  }
-
-  toggleSettings(): boolean {
-    this.sidebarService.toggle(false, 'settings-sidebar');
 
     return false;
   }
