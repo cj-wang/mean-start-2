@@ -6,7 +6,6 @@ import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { filter } from 'rxjs/operators';
 
 import { JwtPayload } from '../../../../../../shared/jwt-payload.interface';
-import { UserData } from '../../../@core/data/users';
 import { AnalyticsService } from '../../../@core/utils';
 
 @Component({
@@ -25,7 +24,6 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: NbAuthService,
               private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private userService: UserData,
               private analyticsService: AnalyticsService,
               private router: Router) {
   }

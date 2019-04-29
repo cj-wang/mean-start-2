@@ -65,7 +65,8 @@ export class NgxTypeaheadDirective extends NgbTypeahead implements OnInit {
       @Inject(DOCUMENT) document: any,
       changeDetector: ChangeDetectorRef,
       private notificationService: NotificationService) {
-    super(el, viewContainerRef, renderer, injector, componentFactoryResolver, config, ngZone, live as any as Live, document, ngZone, changeDetector);
+    super(el, viewContainerRef, renderer, injector, componentFactoryResolver,
+        config, ngZone, live as any as Live, document, ngZone, changeDetector);
   }
 
   @Input() valueField: string;
