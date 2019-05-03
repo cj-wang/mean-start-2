@@ -10,7 +10,6 @@ import {
 } from '@nebular/theme';
 
 import { StateService } from '../../../@core/utils';
-import { NotificationService } from '../../services/notification.service';
 
 // TODO: move layouts into the framework
 @Component({
@@ -59,7 +58,6 @@ import { NotificationService } from '../../services/notification.service';
       </nb-sidebar>
     </nb-layout>
     <ngx-toggle-settings-button></ngx-toggle-settings-button>
-    <toaster-container [toasterconfig]="notificationService.toasterConfig"></toaster-container>
   `,
 })
 export class SampleLayoutComponent implements OnDestroy {
@@ -80,8 +78,7 @@ export class SampleLayoutComponent implements OnDestroy {
               protected menuService: NbMenuService,
               protected themeService: NbThemeService,
               protected bpService: NbMediaBreakpointsService,
-              protected sidebarService: NbSidebarService,
-              public notificationService: NotificationService) {
+              protected sidebarService: NbSidebarService) {
     this.stateService.onLayoutState()
       .pipe(takeWhile(() => this.alive))
       .subscribe((layout: string) => this.layout = layout);

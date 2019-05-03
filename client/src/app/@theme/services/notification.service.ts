@@ -1,82 +1,43 @@
 import { Injectable } from '@angular/core';
-import { ToasterConfig, ToasterService, BodyOutputType, Toast } from 'angular2-toaster';
+import { NbToastrService } from '@nebular/theme';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
 
-  toasterConfig = new ToasterConfig({
-    animation: null,
-    limit: 1,
-    tapToDismiss: false,
-    positionClass: 'toast-center',
-    showCloseButton: true,
-    newestOnTop: false,
-    timeout: 2000,
-    mouseoverTimerStop: true,
-    preventDuplicates: false,
-    bodyOutputType: BodyOutputType.TrustedHtml,
-  });
+  constructor(public toastrService: NbToastrService) { }
 
-  constructor(public toasterService: ToasterService) { }
-
-  error(body: string, title = 'Error', timeout = 0, showCloseButton = true) {
-    return this.toasterService.pop({
-      type: 'error',
-      body: body,
-      title: title,
-      timeout: timeout,
-      showCloseButton: showCloseButton,
+  error(message: string, title = 'Error', duration = 10000) {
+    return this.toastrService.danger(message, title, {
+      duration,
     });
   }
 
-  info(body: string, title = 'Info', timeout = 2000, showCloseButton = true) {
-    return this.toasterService.pop({
-      type: 'info',
-      body: body,
-      title: title,
-      timeout: timeout,
-      showCloseButton: showCloseButton,
+  info(message: string, title = 'Info', duration = 3000) {
+    return this.toastrService.info(message, title, {
+      duration,
     });
   }
 
-  wait(body: string, title = 'Processing', timeout = 0, showCloseButton = false) {
-    return this.toasterService.pop({
-      type: 'wait',
-      body: body,
-      title: title,
-      timeout: timeout,
-      showCloseButton: showCloseButton,
+  wait(message: string, title = 'Processing', duration = 0) {
+    return this.toastrService.primary(message, title, {
+      duration,
+      destroyByClick: false,
+      icon: 'nb-loop',
     });
   }
 
-  success(body: string, title = 'Success', timeout = 2000, showCloseButton = true) {
-    return this.toasterService.pop({
-      type: 'success',
-      body: body,
-      title: title,
-      timeout: timeout,
-      showCloseButton: showCloseButton,
+  success(message: string, title = 'Success', duration = 3000) {
+    return this.toastrService.success(message, title, {
+      duration,
     });
   }
 
-  warning(body: string, title = 'Warning', timeout = 0, showCloseButton = true) {
-    return this.toasterService.pop({
-      type: 'warning',
-      body: body,
-      title: title,
-      timeout: timeout,
-      showCloseButton: showCloseButton,
+  warning(message: string, title = 'Warning', duration = 10000) {
+    return this.toastrService.warning(message, title, {
+      duration,
     });
-  }
-
-  clear(toast?: Toast) {
-    if (toast) {
-      this.toasterService.clear(toast.toastId, toast.toastContainerId);
-    } else {
-      this.toasterService.clear();
-    }
   }
 
 }

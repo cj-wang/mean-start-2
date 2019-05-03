@@ -80,7 +80,6 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "@nguniversal/express-engine": "^7.1.0",
     "@nguniversal/module-map-ngfactory-loader": "^7.1.0",
-    "angular2-toaster": "6.0.0",
     "bootstrap": "4.0.0",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.1",

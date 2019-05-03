@@ -7,7 +7,6 @@ import { debounceTime, distinctUntilChanged, switchMap, tap, map, catchError } f
 import { NgbTypeahead, NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Live } from '@ng-bootstrap/ng-bootstrap/util/accessibility/live';
 import { Live as _Live } from './ng-bootstrap/util/accessibility/live';
-import { NotificationService } from '../services/notification.service';
 
 @Component({
   template: `
@@ -63,8 +62,7 @@ export class NgxTypeaheadDirective extends NgbTypeahead implements OnInit {
       ngZone: NgZone,
       live: _Live,
       @Inject(DOCUMENT) document: any,
-      changeDetector: ChangeDetectorRef,
-      private notificationService: NotificationService) {
+      changeDetector: ChangeDetectorRef) {
     super(el, viewContainerRef, renderer, injector, componentFactoryResolver,
         config, ngZone, live as any as Live, document, ngZone, changeDetector);
   }
@@ -91,7 +89,6 @@ export class NgxTypeaheadDirective extends NgbTypeahead implements OnInit {
           return item[this.valueField];
         }) : queryResult),
         catchError(err => {
-          this.notificationService.clear();
           this.iconComponent.error = err.error.message || err.error.errorMessage || 'Error';
           return of([]);
         }),
@@ -139,7 +136,6 @@ export class NgxTypeaheadDirective extends NgbTypeahead implements OnInit {
                 this.queryResult[value] = valueObject;
                 super.writeValue(value);
               }, err => {
-                this.notificationService.clear();
                 this.iconComponent.error = err.error.message || err.error.errorMessage || 'Error';
               });
               return '...';

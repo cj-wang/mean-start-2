@@ -1,6 +1,5 @@
 import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NotificationService } from '../services/notification.service';
 
 @Component({
   template: `
@@ -39,8 +38,7 @@ export class NgxSelectDirective implements OnInit {
     private el: ElementRef,
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private renderer: Renderer2,
-    private notificationService: NotificationService) { }
+    private renderer: Renderer2) { }
 
   @Input() ngxSelect: () => Observable<any>;
   @Input() valueField: string;
@@ -91,7 +89,6 @@ export class NgxSelectDirective implements OnInit {
       }));
       this.iconComponent.loading = false;
     } catch (err) {
-      this.notificationService.clear();
       this.iconComponent.error = err.error.message || err.error.errorMessage || 'Error';
     }
   }

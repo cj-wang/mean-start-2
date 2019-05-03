@@ -4,10 +4,10 @@ import { HeroesComponent } from './heroes.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ThemeModule } from '../../../@theme/theme.module';
-import { ToasterService } from 'angular2-toaster';
 
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
+import { NbToastrService, NbToastrModule, NbOverlayService } from '@nebular/theme';
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;
@@ -19,9 +19,9 @@ describe('HeroesComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([]),
         HttpClientTestingModule,
-        ThemeModule
+        ThemeModule.forRoot(),
       ],
-      providers: [ HeroService, MessageService, ToasterService ]
+      providers: [ HeroService, MessageService ]
     })
     .compileComponents();
   }));

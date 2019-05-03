@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ThemeModule } from '../../../@theme/theme.module';
-import { ToasterService } from 'angular2-toaster';
 
 import { HeroSearchComponent } from './hero-search.component';
 import { HeroService } from '../hero.service';
@@ -21,7 +20,7 @@ describe('HeroSearchComponent', () => {
         HttpClientTestingModule,
         ThemeModule
       ],
-      providers: [ HeroService, MessageService, ToasterService ]
+      providers: [ HeroService, MessageService ]
     })
     .compileComponents();
   }));

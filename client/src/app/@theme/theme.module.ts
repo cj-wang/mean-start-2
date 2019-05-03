@@ -2,7 +2,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToasterModule } from 'angular2-toaster';
 
 import {
   NbActionsModule,
@@ -105,8 +104,6 @@ const NB_MODULES = [
   NbRadioModule,
   NbSelectModule,
   NbTooltipModule,
-
-  ToasterModule.forChild().ngModule,
 ];
 
 const COMPONENTS = [
@@ -168,8 +165,6 @@ const NB_THEME_PROVIDERS = [
   ...NbDialogModule.forRoot().providers,
   ...NbWindowModule.forRoot().providers,
   ...NbToastrModule.forRoot().providers,
-
-  ...ToasterModule.forRoot().providers,
 ];
 
 @NgModule({
