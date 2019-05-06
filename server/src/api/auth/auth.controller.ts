@@ -10,6 +10,11 @@ export class AuthController {
     return await this.authService.login(loginRequest);
   }
 
+  @Post('refresh-token')
+  async refreshToken(@Body() refreshTokenRequest: any): Promise<any> {
+    return await this.authService.refreshToken(refreshTokenRequest);
+  }
+
   @Delete('logout')
   async logout(): Promise<any> {
     return await this.authService.logout();

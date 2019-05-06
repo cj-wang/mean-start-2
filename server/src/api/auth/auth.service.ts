@@ -4,7 +4,12 @@ import { JwtPayload } from '../../../../shared/jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService) {}
+
+  private expiresIn: number;
+
+  constructor(private readonly jwtService: JwtService) {
+    this.expiresIn = process.env.JWT_EXPIRES || 3600;
+  }
 
   async login(loginRequest: any) {
     // In the real-world app you shouldn't expose this method publicly
@@ -13,12 +18,26 @@ export class AuthService {
       name: loginRequest.email.split('@')[0],
       email: loginRequest.email,
     };
-    const expiresIn = process.env.JWT_EXPIRES || 3600;
     const accessToken = this.jwtService.sign(user, {
-      expiresIn,
+      expiresIn: this.expiresIn,
     });
     return {
-      expiresIn,
+      expiresIn: this.expiresIn,
+      accessToken,
+    };
+  }
+
+  async refreshToken(refreshTokenRequest: any) {
+    const user = this.jwtService.verify(refreshTokenRequest.token, {
+      ignoreExpiration: true,
+    });
+    delete user.iat;
+    delete user.exp;
+    const accessToken = this.jwtService.sign(user, {
+      expiresIn: this.expiresIn,
+    });
+    return {
+      expiresIn: this.expiresIn,
       accessToken,
     };
   }

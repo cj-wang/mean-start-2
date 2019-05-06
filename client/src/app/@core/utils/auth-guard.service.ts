@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     if (isPlatformBrowser(this.platform)) {
-      return this.authService.isAuthenticated().pipe(
+      return this.authService.isAuthenticatedOrRefresh().pipe(
         tap(authenticated => {
           if (!authenticated) {
             this.router.navigate(['auth/login']);
