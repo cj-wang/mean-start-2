@@ -28,6 +28,8 @@ export class AuthService {
   }
 
   async refreshToken(refreshTokenRequest: any) {
+    // In the real-world app you shouldn't expose this method publicly
+    // instead, return a new token once you verify the refresh token
     const user = this.jwtService.verify(refreshTokenRequest.token, {
       ignoreExpiration: true,
     });
