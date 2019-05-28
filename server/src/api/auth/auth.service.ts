@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from '../../../../shared/jwt-payload.interface';
 
@@ -33,6 +33,9 @@ export class AuthService {
     const user = this.jwtService.verify(refreshTokenRequest.token, {
       ignoreExpiration: true,
     });
+    if (Date.now() > (user.exp + this.expiresIn) * 1000) {
+      throw new UnauthorizedException('Token expired');
+    }
     delete user.iat;
     delete user.exp;
     const accessToken = this.jwtService.sign(user, {
