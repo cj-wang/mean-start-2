@@ -8,7 +8,7 @@ export class AuthService {
   private expiresIn: number;
 
   constructor(private readonly jwtService: JwtService) {
-    this.expiresIn = process.env.JWT_EXPIRES || 3600;
+    this.expiresIn = Number(process.env.JWT_EXPIRES) || 3600;
   }
 
   async login(loginRequest: any) {
