@@ -14,11 +14,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
         <span class="slider"></span>
       </div>
 
-      <span
-        *ngIf="!vertical"
-        class="second"
-        [class.active]="isSecondValue()"
-      >
+      <span *ngIf="!vertical"
+            class="second"
+            [class.active]="isSecondValue()">
           {{secondValueLabel}}
       </span>
     </label>

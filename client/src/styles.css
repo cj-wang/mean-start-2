@@ -3,15 +3,15 @@
 }
 
 .col-form-label {
-  padding-top: 12px;
+  padding-top: 8px;
 }
 
 .form-group.row .form-control-plaintext {
-  padding: 11px 0;
+  padding: 7px 0;
 }
 
 .form-group.row .custom-control.custom-checkbox {
-  margin: 9px 0;
+  margin: 5px 0;
 }
 
 ngb-typeahead-window.dropdown-menu {

@@ -3,13 +3,13 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
-    icon: 'nb-home',
+    icon: 'home-outline',
     link: '/pages/dashboard',
     home: true,
   },
   {
     title: 'Tour of Heroes',
-    icon: 'nb-person',
+    icon: 'people-outline',
     children: [
       {
         title: 'Dashboard',
@@ -27,7 +27,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'Auth',
-    icon: 'nb-locked',
+    icon: 'lock-outline',
     children: [
       {
         title: 'Login',

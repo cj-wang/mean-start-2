@@ -3,8 +3,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import {
+  NbAlertModule,
+  NbButtonModule,
+  NbCardModule,
+  NbCheckboxModule,
+  NbIconModule,
+  NbInputModule,
+  NbLayoutModule,
+} from '@nebular/theme';
 import { NbAuthModule } from '@nebular/auth';
-import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbInputModule} from '@nebular/theme';
 
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { NgxLoginComponent } from './login/login.component';
@@ -12,15 +20,17 @@ import { NgxLoginComponent } from './login/login.component';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    RouterModule,
+    NbLayoutModule,
+    NbCardModule,
+    NbCheckboxModule,
     NbAlertModule,
     NbInputModule,
     NbButtonModule,
-    NbCheckboxModule,
-    NgxAuthRoutingModule,
-
+    RouterModule,
+    FormsModule,
+    NbIconModule,
     NbAuthModule,
+    NgxAuthRoutingModule,
   ],
   declarations: [
     NgxLoginComponent,

@@ -18,7 +18,7 @@ export class NgxSelectOptionComponent {
     <i class="fas fa-spinner fa-2x" *ngIf="loading"></i>
     <i class="fas fa-exclamation-circle fa-2x" *ngIf="error" title="{{error}}"></i>
   `,
-  styles: ['i {position: absolute; right: -25px; top: 10px;}'],
+  styles: ['i {position: absolute; right: -25px; top: 5px;}'],
 })
 export class NgxSelectIconComponent {
   loading = false;

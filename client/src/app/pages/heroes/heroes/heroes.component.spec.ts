@@ -7,7 +7,7 @@ import { ThemeModule } from '../../../@theme/theme.module';
 
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
-import { NbToastrService, NbToastrModule, NbOverlayService } from '@nebular/theme';
+import { NbToastrModule } from '@nebular/theme';
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;
@@ -20,6 +20,7 @@ describe('HeroesComponent', () => {
         RouterTestingModule.withRoutes([]),
         HttpClientTestingModule,
         ThemeModule.forRoot(),
+        NbToastrModule.forRoot(),
       ],
       providers: [ HeroService, MessageService ]
     })

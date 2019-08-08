@@ -1,34 +1,74 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NbMenuService, NbSidebarService } from '@nebular/theme';
+import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
-import { filter } from 'rxjs/operators';
+
+import { map, takeUntil, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 import { JwtPayload } from '../../../../../../shared/jwt-payload.interface';
-import { AnalyticsService } from '../../../@core/utils';
 
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  @Input() position = 'normal';
-
+  private destroy$: Subject<void> = new Subject<void>();
+  userPictureOnly: boolean = false;
   user: JwtPayload;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  themes = [
+    {
+      value: 'default',
+      name: 'Light',
+    },
+    {
+      value: 'dark',
+      name: 'Dark',
+    },
+    {
+      value: 'cosmic',
+      name: 'Cosmic',
+    },
+    {
+      value: 'corporate',
+      name: 'Corporate',
+    },
+  ];
 
-  constructor(private authService: NbAuthService,
-              private sidebarService: NbSidebarService,
+  currentTheme = 'default';
+
+  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+
+  constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private analyticsService: AnalyticsService,
+              private themeService: NbThemeService,
+              private breakpointService: NbMediaBreakpointsService,
+              private authService: NbAuthService,
               private router: Router) {
   }
 
   ngOnInit() {
+    this.currentTheme = this.themeService.currentTheme;
+
+    const { xl } = this.breakpointService.getBreakpointsMap();
+    this.themeService.onMediaQueryChange()
+      .pipe(
+        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+        takeUntil(this.destroy$),
+      )
+      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+
+    this.themeService.onThemeChange()
+      .pipe(
+        map(({ name }) => name),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(themeName => this.currentTheme = themeName);
+
     this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
       if (token.isValid()) {
         this.user = token.getPayload();
@@ -43,17 +83,23 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  changeTheme(themeName: string) {
+    this.themeService.changeTheme(themeName);
+  }
+
   toggleSidebar(): boolean {
     this.sidebarService.toggle(true, 'menu-sidebar');
 
     return false;
   }
 
-  goToHome() {
+  navigateHome() {
     this.menuService.navigateHome();
-  }
-
-  startSearch() {
-    this.analyticsService.trackEvent('startSearch');
+    return false;
   }
 }

@@ -1,7 +1,7 @@
 import { Directive, OnInit, Input, Component, ViewContainerRef, ComponentFactoryResolver, ElementRef, Renderer2,
-  Injector, NgZone, forwardRef, Inject, ChangeDetectorRef } from '@angular/core';
+  Injector, NgZone, forwardRef, Inject, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap, map, catchError } from 'rxjs/operators';
 import { NgbTypeahead, NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import { Live as _Live } from './ng-bootstrap/util/accessibility/live';
     <i class="fas fa-spinner fa-2x" *ngIf="loading"></i>
     <i class="fas fa-exclamation-circle fa-2x" *ngIf="error" title="{{error}}"></i>
   `,
-  styles: ['i {position: absolute; right: -25px; top: 10px;}'],
+  styles: ['i {position: absolute; right: -25px; top: 5px;}'],
 })
 export class NgxTypeaheadIconComponent {
   loading = false;
@@ -62,9 +62,10 @@ export class NgxTypeaheadDirective extends NgbTypeahead implements OnInit {
       ngZone: NgZone,
       live: _Live,
       @Inject(DOCUMENT) document: any,
-      changeDetector: ChangeDetectorRef) {
+      changeDetector: ChangeDetectorRef,
+      applicationRef: ApplicationRef) {
     super(el, viewContainerRef, renderer, injector, componentFactoryResolver,
-        config, ngZone, live as any as Live, document, ngZone, changeDetector);
+        config, ngZone, live as any as Live, document, ngZone, changeDetector, applicationRef);
   }
 
   @Input() valueField: string;
