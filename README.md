@@ -27,3 +27,6 @@ Run `npm test` to execute the client and server unit tests concurrently.
 ## Running end-to-end tests
 
 Run `npm run e2e` to execute the client and server end-to-end tests.
+
+<!-- To wake up the Heroku instance -->
+<img src="https://mean-start-2.herokuapp.com" alt="">
