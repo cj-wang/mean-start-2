@@ -7,4 +7,8 @@ import { NbLoginComponent } from '@nebular/auth';
   styleUrls: ['./login.component.scss'],
 })
 export class NgxLoginComponent extends NbLoginComponent {
+  user = {
+    email: 'Admin@email.com',
+    password: 'password',
+  };
 }
