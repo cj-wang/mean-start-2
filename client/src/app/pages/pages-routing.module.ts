@@ -16,7 +16,8 @@ const routes: Routes = [{
     {
       path: 'heroes',
       canActivate: [AuthGuard],
-      loadChildren: 'app/pages/heroes/app.module#AppModule',
+      loadChildren: () => import('./heroes/app.module')
+        .then(m => m.AppModule),
     },
     {
       path: '',

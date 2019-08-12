@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 const routes: Routes = [
   {
     path: 'pages',
-    loadChildren: 'app/pages/pages.module#PagesModule',
+    loadChildren: () => import('./pages/pages.module')
+      .then(m => m.PagesModule),
   },
   {
     path: 'auth',
-    loadChildren: 'app/auth/auth.module#NgxAuthModule',
+    loadChildren: () => import('./auth/auth.module')
+      .then(m => m.NgxAuthModule),
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
