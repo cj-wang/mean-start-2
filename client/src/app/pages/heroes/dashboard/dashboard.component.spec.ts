@@ -1,5 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NbCardModule } from '@nebular/theme';
+
+import { NgxCommonModule } from '../../../common/common.module';
+
 import { DashboardComponent } from './dashboard.component';
 import { HeroSearchComponent } from '../hero-search/hero-search.component';
 
@@ -7,7 +11,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { HEROES } from '../../../../../../shared/mock-heroes';
 import { HeroService } from '../hero.service';
-import { ThemeModule } from '../../../@theme/theme.module';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -25,7 +28,8 @@ describe('DashboardComponent', () => {
       ],
       imports: [
         RouterTestingModule.withRoutes([]),
-        ThemeModule
+        NgxCommonModule,
+        NbCardModule
       ],
       providers: [
         { provide: HeroService, useValue: heroService },

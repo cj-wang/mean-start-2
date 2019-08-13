@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hello } from '../../../../../shared/hello';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class HelloService {
 
   constructor(private http: HttpClient) { }

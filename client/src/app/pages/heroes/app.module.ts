@@ -1,6 +1,9 @@
 import { NgModule }       from '@angular/core';
+import { FormsModule }    from '@angular/forms';
 
-import { ThemeModule } from '../../@theme/theme.module';
+import { NbCardModule, NbRouteTabsetModule } from '@nebular/theme';
+
+import { NgxCommonModule } from '../../common/common.module';
 
 import { AppRoutingModule }     from './app-routing.module';
 
@@ -15,8 +18,11 @@ import { MessageService } from './message.service';
 
 @NgModule({
   imports: [
-    ThemeModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    NgxCommonModule,
+    NbCardModule,
+    NbRouteTabsetModule,
   ],
   declarations: [
     AppComponent,

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { NotificationService } from '../../../@theme/services/notification.service';
+import { NotificationService } from '../../../common/services/notification.service';
 
 import { Hero }         from '../../../../../../shared/hero';
 import { HeroService }  from '../hero.service';

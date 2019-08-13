@@ -3,11 +3,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HeroesComponent } from './heroes.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { NbToastrModule, NbCardModule } from '@nebular/theme';
+
 import { ThemeModule } from '../../../@theme/theme.module';
+import { NgxCommonModule } from '../../../common/common.module';
 
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
-import { NbToastrModule } from '@nebular/theme';
 
 describe('HeroesComponent', () => {
   let component: HeroesComponent;
@@ -20,6 +22,8 @@ describe('HeroesComponent', () => {
         RouterTestingModule.withRoutes([]),
         HttpClientTestingModule,
         ThemeModule.forRoot(),
+        NgxCommonModule,
+        NbCardModule,
         NbToastrModule.forRoot(),
       ],
       providers: [ HeroService, MessageService ]

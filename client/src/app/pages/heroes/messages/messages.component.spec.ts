@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThemeModule } from '../../../@theme/theme.module';
+import { NbCardModule } from '@nebular/theme';
+
+import { NgxCommonModule } from '../../../common/common.module';
 
 import { MessagesComponent } from './messages.component';
 import { MessageService } from '../message.service';
@@ -12,7 +14,10 @@ describe('MessagesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MessagesComponent ],
-      imports: [ ThemeModule ],
+      imports: [
+        NgxCommonModule,
+        NbCardModule,
+      ],
       providers: [ MessageService ]
     })
     .compileComponents();

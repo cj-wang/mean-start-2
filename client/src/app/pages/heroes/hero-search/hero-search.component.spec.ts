@@ -2,7 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { ThemeModule } from '../../../@theme/theme.module';
+import { NbCardModule } from '@nebular/theme';
+
+import { NgxCommonModule } from '../../../common/common.module';
 
 import { HeroSearchComponent } from './hero-search.component';
 import { HeroService } from '../hero.service';
@@ -18,7 +20,8 @@ describe('HeroSearchComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([]),
         HttpClientTestingModule,
-        ThemeModule
+        NgxCommonModule,
+        NbCardModule
       ],
       providers: [ HeroService, MessageService ]
     })
