@@ -15,7 +15,7 @@ export class AuthService {
     // In the real-world app you shouldn't expose this method publicly
     // instead, return a token once you verify user credentials
     const user: JwtPayload = {
-      name: loginRequest.email.split('@')[0],
+      name: loginRequest.name || loginRequest.email.split('@')[0],
       email: loginRequest.email,
     };
     const accessToken = this.jwtService.sign(user, {

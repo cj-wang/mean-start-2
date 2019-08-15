@@ -10,6 +10,7 @@ import {
 } from '@nebular/auth';
 
 import { NgxLoginComponent } from './login/login.component';
+import { OAuth2GoogleCallbackComponent } from './oauth2/oauth2-google-callback.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
       {
         path: 'reset-password',
         component: NbResetPasswordComponent,
+      },
+      {
+        path: 'oauth2/google/callback',
+        component: OAuth2GoogleCallbackComponent,
       },
     ],
   },

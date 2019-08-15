@@ -10,6 +10,8 @@ import {
   NbAuthJWTToken,
   NbAuthJWTInterceptor,
   NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
+  NbOAuth2AuthStrategy,
+  NbOAuth2ResponseType,
 } from '@nebular/auth';
 
 import {
@@ -24,6 +26,7 @@ import {
 
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { NgxLoginComponent } from './login/login.component';
+import { OAuth2GoogleCallbackComponent } from './oauth2/oauth2-google-callback.component';
 
 export const AUTH_PROVIDERS = [
   ...NbAuthModule.forRoot({
@@ -34,6 +37,17 @@ export const AUTH_PROVIDERS = [
         token: {
           class: NbAuthJWTToken,
           key: 'accessToken',
+        },
+      }),
+      NbOAuth2AuthStrategy.setup({
+        name: 'google',
+        clientId: '933280634244-q19fogbb1sde2eolu37oiv3us06hmst5.apps.googleusercontent.com',
+        clientSecret: '',
+        authorize: {
+          endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
+          responseType: NbOAuth2ResponseType.TOKEN,
+          scope: `https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`,
+          redirectUri: window.location.origin + '/auth/oauth2/google/callback',
         },
       }),
     ],
@@ -76,6 +90,7 @@ export function tokenInterceptorFilter(req: HttpRequest<any>) {
   ],
   declarations: [
     NgxLoginComponent,
+    OAuth2GoogleCallbackComponent,
   ],
 })
 export class NgxAuthModule {
