@@ -12,6 +12,7 @@ import { NgxTypeaheadDirective, NgxTypeaheadIconComponent } from './directives/n
 import { NgxSelectDirective, NgxSelectOptionComponent, NgxSelectIconComponent } from './directives/ngx-select.directive';
 import { NgxCheckboxDirective, NgxCheckboxComponent } from './directives/ngx-checkbox.directive';
 import { TrueFalseValueDirective } from './directives/true-false-value.directive';
+import { ModuleWithProviders } from '@angular/compiler/src/core';
 
 const COMPONENTS = [
   NgxFormGroupRowComponent,
@@ -35,6 +36,14 @@ const DIRECTIVES = [
   TrueFalseValueDirective,
 ];
 
+export const COMMON_PROVIDERS = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpRequestInterceptor,
+    multi: true,
+  },
+];
+
 @NgModule({
   imports: [
     ThemeModule,
@@ -53,12 +62,14 @@ const DIRECTIVES = [
   entryComponents: [
     ...ENTRY_COMPONENTS,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpRequestInterceptor,
-      multi: true,
-    },
-  ],
 })
-export class NgxCommonModule { }
+export class NgxCommonModule {
+  static forRoot(): ModuleWithProviders {
+    return <ModuleWithProviders>{
+      ngModule: NgxCommonModule,
+      providers: [
+        ...COMMON_PROVIDERS,
+      ],
+    };
+  }
+}

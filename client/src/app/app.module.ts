@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { NgxAuthModule } from './auth/auth.module';
+import { NgxCommonModule } from './common/common.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +44,7 @@ import {
     }),
     CoreModule.forRoot(),
     NgxAuthModule.forRoot(),
+    NgxCommonModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })
