@@ -47,7 +47,7 @@ export const AUTH_PROVIDERS = [
           endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
           responseType: NbOAuth2ResponseType.TOKEN,
           scope: `https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`,
-          redirectUri: window.location.origin + '/auth/oauth2/google/callback',
+          redirectUri: '/auth/oauth2/google/callback',
         },
       }),
     ],

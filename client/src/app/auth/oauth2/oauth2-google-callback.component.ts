@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { NbAuthResult, NbAuthService, NB_AUTH_OPTIONS } from '@nebular/auth';
+import { NbAuthResult, NbAuthService, NB_AUTH_OPTIONS, NbOAuth2AuthStrategy } from '@nebular/auth';
 import { takeWhile } from 'rxjs/operators';
 import { NgxLoginComponent } from '../login/login.component';
 
@@ -20,8 +20,9 @@ export class OAuth2GoogleCallbackComponent extends NgxLoginComponent implements 
       @Inject(NB_AUTH_OPTIONS) protected options = {},
       protected cd: ChangeDetectorRef,
       protected router: Router,
-      private http: HttpClient) {
-    super(service, options, cd, router);
+      protected oauth2Strategy: NbOAuth2AuthStrategy,
+      protected http: HttpClient) {
+    super(service, options, cd, router, oauth2Strategy);
   }
 
   ngOnInit(): void {
