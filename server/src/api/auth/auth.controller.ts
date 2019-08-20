@@ -1,23 +1,30 @@
-import { Controller, Post, Delete, Body } from '@nestjs/common';
+import { Controller, Get, Request, Post, UseGuards, Body, Delete } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @UseGuards(AuthGuard('local'))
   @Post('login')
-  async login(@Body() loginRequest: any): Promise<any> {
-    return await this.authService.login(loginRequest);
+  async login(@Request() req) {
+    return this.authService.login(req.user);
   }
 
   @Post('refresh-token')
   async refreshToken(@Body() refreshTokenRequest: any): Promise<any> {
-    return await this.authService.refreshToken(refreshTokenRequest);
+    return this.authService.refreshToken(refreshTokenRequest.token);
   }
 
   @Delete('logout')
   async logout(): Promise<any> {
-    return await this.authService.logout();
+    return this.authService.logout();
   }
 
+  @UseGuards(AuthGuard('jwt'))
+  @Get('me')
+  getProfile(@Request() req) {
+    return req.user;
+  }
 }

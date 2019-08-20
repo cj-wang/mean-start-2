@@ -13,7 +13,7 @@ export class NgxLoginComponent extends NbLoginComponent implements OnInit, OnDes
   alive = true;
 
   user: any = {
-    email: 'Admin@email.com',
+    username: 'admin@email.com',
     password: 'password',
   };
 

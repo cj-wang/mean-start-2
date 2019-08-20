@@ -36,7 +36,7 @@ export class OAuth2GoogleCallbackComponent extends NgxLoginComponent implements 
               .toPromise();
           this.user = {
             name: profile.names[0].displayName,
-            email: profile.emailAddresses[0].value,
+            username: profile.emailAddresses[0].value,
           };
           // In the real-world app we should register the user locally first before calling login
           this.login();

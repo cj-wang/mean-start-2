@@ -69,18 +69,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
       )
       .subscribe(themeName => this.currentTheme = themeName);
 
-    this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
-      if (token.isValid()) {
-        this.user = token.getPayload();
-      }
-    });
-    this.menuService.onItemClick().pipe(
-      filter(menu => menu.tag === 'userMenu' && menu.item.title === 'Log out'),
-    ).subscribe(async menu => {
-      this.authService.logout('email').subscribe(result => {
+    this.authService.onTokenChange()
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe((token: NbAuthJWTToken) => {
+        if (token.isValid()) {
+          this.user = token.getPayload();
+        }
+      });
+
+    this.menuService.onItemClick()
+      .pipe(
+        takeUntil(this.destroy$),
+        filter(menu => menu.tag === 'userMenu' && menu.item.title === 'Log out'),
+      )
+      .subscribe(async menu => {
         this.router.navigate(['auth/logout']);
       });
-    });
   }
 
   ngOnDestroy() {

@@ -1,6 +1,6 @@
 <h1 id="title" class="title">Login</h1>
 <p class="sub-title">
-  Hello! You can log in with <b>any</b> email/passowrd, or login with 
+  Hello! You can log in with the default username/passowrd, or login with 
   <a href="javascript:void(0)" (click)="googleLogin()"><B>Google</B></a>.
 </p>
 
@@ -24,7 +24,7 @@
     <label class="label" for="input-email">Email address:</label>
     <input nbInput
            fullWidth
-           [(ngModel)]="user.email"
+           [(ngModel)]="user.username"
            #email="ngModel"
            name="email"
            id="input-email"
