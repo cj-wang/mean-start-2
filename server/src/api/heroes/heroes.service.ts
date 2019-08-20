@@ -18,11 +18,11 @@ export class HeroesService {
   }
 
   findByName(term: string): Hero[] {
-    return this.heroes.filter((_hero: Hero) => _hero.name.search(new RegExp(term, 'i')) >= 0);
+    return this.heroes.filter((h: Hero) => h.name.search(new RegExp(term, 'i')) >= 0);
   }
 
   findById(id: number): Hero {
-    const hero = this.heroes.filter((_hero: Hero) => _hero.id === id)[0];
+    const hero = this.heroes.filter((h: Hero) => h.id === id)[0];
     if (hero) {
       return hero;
     } else {

@@ -56,7 +56,7 @@ describe('HeroesService', () => {
 
   describe('update()', () => {
     it('should update the hero', () => {
-      hero.name = "Updated Name";
+      hero.name = 'Updated Name';
       hero = service.update(hero);
       expect(service.findById(hero.id)).toEqual(hero);
     });
@@ -78,5 +78,5 @@ describe('HeroesService', () => {
       expect(() => service.remove({id: 99})).toThrow(NotFoundException);
     });
   });
-  
+
 });

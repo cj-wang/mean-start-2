@@ -71,7 +71,7 @@ describe('HeroesController (e2e)', () => {
 
   describe('PUT /api/heroes/:id', () => {
     it('should update the hero', () => {
-      hero.name = "Updated Name";
+      hero.name = 'Updated Name';
       return request(app.getHttpServer())
         .put(`/api/heroes/${hero.id}`)
         .send(hero)
@@ -89,7 +89,7 @@ describe('HeroesController (e2e)', () => {
 
   describe('PUT /api/heroes', () => {
     it('should update the hero', () => {
-      hero.name = "Updated Name";
+      hero.name = 'Updated Name';
       return request(app.getHttpServer())
         .put('/api/heroes')
         .send(hero)
@@ -101,7 +101,7 @@ describe('HeroesController (e2e)', () => {
       return request(app.getHttpServer())
         .put('/api/heroes')
         .send({
-          id: 99
+          id: 99,
         })
         .expect(404);
     });

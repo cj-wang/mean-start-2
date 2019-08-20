@@ -12,11 +12,10 @@ describe('HelloService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
-  
+
   describe('hello', () => {
     it('should return "Hello name!"', () => {
       expect(service.hello('name')).toBe('Hello name!');
     });
   });
 });
- 
