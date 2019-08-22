@@ -7,11 +7,10 @@ import { HTTP_INTERCEPTORS, HttpRequest } from '@angular/common/http';
 import {
   NbAuthModule,
   NbPasswordAuthStrategy,
+  NbOAuth2AuthStrategy,
   NbAuthJWTToken,
   NbAuthJWTInterceptor,
   NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
-  NbOAuth2AuthStrategy,
-  NbOAuth2ResponseType,
 } from '@nebular/auth';
 
 import {
@@ -26,7 +25,7 @@ import {
 
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { NgxLoginComponent } from './login/login.component';
-import { OAuth2GoogleCallbackComponent } from './oauth2/oauth2-google-callback.component';
+import { NgxOAuth2CallbackComponent } from './oauth2/oauth2-callback.component';
 
 export const AUTH_PROVIDERS = [
   ...NbAuthModule.forRoot({
@@ -39,15 +38,16 @@ export const AUTH_PROVIDERS = [
           key: 'accessToken',
         },
       }),
+      // OAuth2 authorization code grant type is done by Passport from Nest server
+      // The token passed from the server is not an OAuth2 token, it's a JWT token generated based on the OAuth2 logged in user
+      // Here the NbOAuth2AuthStrategy is only used by NgxOAuth2CallbackComponent to save the JWT token and redirect to the home page
       NbOAuth2AuthStrategy.setup({
-        name: 'google',
-        clientId: '933280634244-q19fogbb1sde2eolu37oiv3us06hmst5.apps.googleusercontent.com',
+        name: 'oauth2',
+        clientId: '',
         clientSecret: '',
-        authorize: {
-          endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
-          responseType: NbOAuth2ResponseType.TOKEN,
-          scope: `https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email`,
-          redirectUri: '/auth/oauth2/google/callback',
+        token: {
+          class: NbAuthJWTToken,
+          redirectUri: '/',
         },
       }),
     ],
@@ -90,7 +90,7 @@ export function tokenInterceptorFilter(req: HttpRequest<any>) {
   ],
   declarations: [
     NgxLoginComponent,
-    OAuth2GoogleCallbackComponent,
+    NgxOAuth2CallbackComponent,
   ],
 })
 export class NgxAuthModule {

@@ -1,4 +1,4 @@
-import { Controller, Get, Request, Post, UseGuards, Body, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Request, Response, Body, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 
@@ -10,6 +10,21 @@ export class AuthController {
   @Post('login')
   async login(@Request() req) {
     return this.authService.login(req.user);
+  }
+
+  @UseGuards(AuthGuard('google'))
+  @Get('google')
+  async googleLogin() {
+    // GoogleStrategy to redirect to Google login page
+  }
+
+  @UseGuards(AuthGuard('google'))
+  @Get('oauth2/callback')
+  async googleCallback(@Request() req, @Response() res) {
+    // Generate JWT token based on the OAuth2 logged in user
+    const accessToken = (await this.authService.login(req.user)).accessToken;
+    // Pass the token to client app
+    res.redirect(`/auth/oauth2/callback?accessToken=${accessToken}`);
   }
 
   @Post('refresh-token')
