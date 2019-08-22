@@ -6,4 +6,4 @@ export const jwtConstants = {
 export const googleClient = {
   clientID: process.env.GOOGLE_CLIENT_ID || 'GOOGLE_CLIENT_ID',
   clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'GOOGLE_CLIENT_SECRET',
-}
+};
