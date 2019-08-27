@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NbLoginComponent } from '@nebular/auth';
+import { NbLoginComponent, NbAuthResult } from '@nebular/auth';
 
 @Component({
   selector: 'ngx-login',
@@ -12,5 +12,30 @@ export class NgxLoginComponent extends NbLoginComponent {
     username: 'admin@email.com',
     password: 'password',
   };
+
+  login(): void {
+    this.errors = [];
+    this.messages = [];
+    this.submitted = true;
+
+    this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
+      this.submitted = false;
+
+      if (result.isSuccess()) {
+        this.messages = result.getMessages();
+      } else {
+        this.errors = result.getErrors();
+      }
+
+      const redirect = sessionStorage.getItem('redirectUrl') ||  result.getRedirect();
+      if (redirect) {
+        setTimeout(() => {
+          return this.router.navigateByUrl(redirect);
+        }, this.redirectDelay);
+        sessionStorage.removeItem('redirectUrl');
+      }
+      this.cd.detectChanges();
+    });
+  }
 
 }
