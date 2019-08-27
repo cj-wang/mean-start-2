@@ -11,6 +11,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
       clientSecret: googleClient.clientSecret,
       callbackURL: '/api/auth/oauth2/callback',
       scope: `profile email`,
+      proxy: true,
     });
   }
 
