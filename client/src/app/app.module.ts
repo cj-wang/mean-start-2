@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { PrebootModule } from 'preboot';
 import { CoreModule } from './@core/core.module';
 import { NgxAuthModule } from './auth/auth.module';
 import { NgxCommonModule } from './common/common.module';
@@ -27,6 +28,7 @@ import {
   declarations: [AppComponent],
   imports: [
     BrowserModule.withServerTransition({appId: 'mean-start-2'}),
+    PrebootModule.withConfig({appRoot: 'ngx-app'}),
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
