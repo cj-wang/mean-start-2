@@ -16,17 +16,15 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (isPlatformBrowser(this.platform)) {
-      return this.authService.isAuthenticatedOrRefresh().pipe(
-        tap(authenticated => {
-          if (!authenticated) {
+    return this.authService.isAuthenticatedOrRefresh().pipe(
+      tap(authenticated => {
+        if (!authenticated) {
+          if (isPlatformBrowser(this.platform)) {
             sessionStorage.setItem('redirectUrl', state.url);
-            this.router.navigate(['auth/login']);
           }
-        }),
-      );
-    } else {
-      return true;
-    }
+          this.router.navigate(['auth/login']);
+        }
+      }),
+    );
   }
 }

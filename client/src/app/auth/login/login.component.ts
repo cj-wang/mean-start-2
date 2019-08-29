@@ -28,11 +28,11 @@ export class NgxLoginComponent extends NbLoginComponent {
       }
 
       const redirect = sessionStorage.getItem('redirectUrl') ||  result.getRedirect();
+      sessionStorage.removeItem('redirectUrl');
       if (redirect) {
         setTimeout(() => {
           return this.router.navigateByUrl(redirect);
         }, this.redirectDelay);
-        sessionStorage.removeItem('redirectUrl');
       }
       this.cd.detectChanges();
     });

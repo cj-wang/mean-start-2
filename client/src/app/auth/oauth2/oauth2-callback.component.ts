@@ -28,9 +28,9 @@ export class NgxOAuth2CallbackComponent implements OnInit {
       const token = this.oauth2AuthStrategy.createToken(accessToken, true);
       this.tokenService.set(token);
       const redirect = sessionStorage.getItem('redirectUrl') || this.oauth2AuthStrategy.getOption('token.redirectUri');
+      sessionStorage.removeItem('redirectUrl');
       if (redirect) {
         this.router.navigateByUrl(redirect);
-        sessionStorage.removeItem('redirectUrl');
       }
     }
   }
