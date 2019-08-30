@@ -18,7 +18,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).do((event: HttpEvent<any>) => {}, async (err: any) => {
-      if (err instanceof HttpErrorResponse) {
+      if (err instanceof HttpErrorResponse && request.url !== 'api/auth/refresh-token') {
         this.notificationService.error(err.error.message);
       }
     });
