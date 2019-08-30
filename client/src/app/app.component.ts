@@ -7,7 +7,7 @@ import { Component, OnInit, PLATFORM_ID, Inject, Optional } from '@angular/core'
 import { isPlatformServer } from '@angular/common';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
-import { NbOAuth2AuthStrategy, NbTokenService } from '@nebular/auth';
+import { NbPasswordAuthStrategy, NbTokenService } from '@nebular/auth';
 import { AnalyticsService } from './@core/utils/analytics.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     @Optional() @Inject(REQUEST) private request: Request,
-    protected oauth2AuthStrategy: NbOAuth2AuthStrategy,
+    protected passwordAuthStrategy: NbPasswordAuthStrategy,
     protected tokenService: NbTokenService,
     private analytics: AnalyticsService,
   ) {}
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       this.tokenService.clear();
       const accessToken = this.request.cookies.accessToken;
       if (accessToken) {
-        const token = this.oauth2AuthStrategy.createToken(accessToken, false);
+        const token = this.passwordAuthStrategy.createToken(accessToken, false);
         this.tokenService.set(token);
       }
     }
