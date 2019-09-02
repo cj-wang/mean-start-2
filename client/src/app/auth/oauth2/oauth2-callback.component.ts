@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbPasswordAuthStrategy, NbOAuth2AuthStrategy, NbTokenService } from '@nebular/auth';
+import { NbPasswordAuthStrategy, NbTokenService } from '@nebular/auth';
 
 @Component({
   template: `
@@ -14,8 +14,7 @@ export class NgxOAuth2CallbackComponent implements OnInit {
     @Inject(PLATFORM_ID) private platform: Object,
     protected router: Router,
     protected activatedRoute: ActivatedRoute,
-    protected passwordAuthStrategy: NbPasswordAuthStrategy,
-    protected oauth2AuthStrategy: NbOAuth2AuthStrategy,
+    protected authStrategy: NbPasswordAuthStrategy,
     protected tokenService: NbTokenService,
   ) {
   }
@@ -26,9 +25,9 @@ export class NgxOAuth2CallbackComponent implements OnInit {
     // Here only need to save the JWT token and redirect to the home page
     if (isPlatformBrowser(this.platform)) {
       const accessToken = this.activatedRoute.snapshot.queryParams.accessToken;
-      const token = this.passwordAuthStrategy.createToken(accessToken, true);
+      const token = this.authStrategy.createToken(accessToken, true);
       this.tokenService.set(token);
-      const redirect = sessionStorage.getItem('redirectUrl') || this.oauth2AuthStrategy.getOption('token.redirectUri');
+      const redirect = sessionStorage.getItem('redirectUrl') || this.authStrategy.getOption('login.redirect.success');
       sessionStorage.removeItem('redirectUrl');
       if (redirect) {
         this.router.navigateByUrl(redirect);

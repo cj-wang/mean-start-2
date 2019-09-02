@@ -7,7 +7,6 @@ import { HTTP_INTERCEPTORS, HttpRequest } from '@angular/common/http';
 import {
   NbAuthModule,
   NbPasswordAuthStrategy,
-  NbOAuth2AuthStrategy,
   NbAuthJWTToken,
   NbAuthJWTInterceptor,
   NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
@@ -36,18 +35,6 @@ export const AUTH_PROVIDERS = [
         token: {
           class: NbAuthJWTToken,
           key: 'accessToken',
-        },
-      }),
-      // OAuth2 authorization code grant type is done by Passport from Nest server
-      // The token passed from the server is not an OAuth2 token, it's a JWT token generated based on the OAuth2 logged in user
-      // Here the NbOAuth2AuthStrategy is only used by NgxOAuth2CallbackComponent to save the JWT token and redirect to the home page
-      NbOAuth2AuthStrategy.setup({
-        name: 'oauth2',
-        clientId: '',
-        clientSecret: '',
-        token: {
-          class: NbAuthJWTToken,
-          redirectUri: '/',
         },
       }),
     ],

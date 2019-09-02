@@ -27,7 +27,7 @@ export class NgxLoginComponent extends NbLoginComponent {
         this.errors = result.getErrors();
       }
 
-      const redirect = sessionStorage.getItem('redirectUrl') ||  result.getRedirect();
+      const redirect = sessionStorage.getItem('redirectUrl') || result.getRedirect();
       sessionStorage.removeItem('redirectUrl');
       if (redirect) {
         setTimeout(() => {
