@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     @Optional() @Inject(REQUEST) private request: Request,
-    protected passwordAuthStrategy: NbPasswordAuthStrategy,
+    protected authStrategy: NbPasswordAuthStrategy,
     protected tokenService: NbTokenService,
     private analytics: AnalyticsService,
   ) {}
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       this.tokenService.clear();
       const accessToken = this.request.cookies.accessToken;
       if (accessToken) {
-        const token = this.passwordAuthStrategy.createToken(accessToken, false);
+        const token = this.authStrategy.createToken(accessToken, false);
         this.tokenService.set(token);
       }
     }
