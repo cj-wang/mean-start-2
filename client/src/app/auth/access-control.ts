@@ -4,16 +4,11 @@ export const accessControl = {
   },
   user: {
     parent: 'guest',
-    view: ['heroes', 'user'],
-    create: 'heroes',
-    edit: ['heroes', 'user'],
-    remove: 'heroes',
+    view: 'user',
+    manage: 'heroes',
   },
   admin: {
     parent: 'user',
-    view: 'users',
-    create: 'users',
-    edit: 'users',
-    remove: 'users',
+    manage: 'users',
   },
 };

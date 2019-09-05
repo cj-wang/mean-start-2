@@ -53,7 +53,6 @@ export const AUTH_PROVIDERS = [
     provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
     useValue: tokenInterceptorFilter,
   },
-  AuthGuard,
 
   NbSecurityModule.forRoot({
     accessControl,
@@ -62,6 +61,8 @@ export const AUTH_PROVIDERS = [
     provide: NbRoleProvider,
     useClass: RoleProvider,
   },
+
+  AuthGuard,
 ];
 
 export function tokenInterceptorFilter(req: HttpRequest<any>) {
