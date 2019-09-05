@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
+import { User } from '../../../../shared/user';
 
 @Injectable()
 export class AuthService {
@@ -19,13 +20,13 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
+  async login(user: User) {
     return {
       accessToken: this.jwtService.sign(user),
     };
   }
 
-  async refreshToken(token: any) {
+  async refreshToken(token: string) {
     const user = this.jwtService.verify(token, {
       ignoreExpiration: true,
     });

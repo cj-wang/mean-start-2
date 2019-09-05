@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-
-export type User = any;
+import { User } from '../../../../shared/user';
 
 @Injectable()
 export class UsersService {
@@ -9,28 +8,32 @@ export class UsersService {
   constructor() {
     this.users = [
       {
-        userId: 0,
+        userId: '0',
         name: 'Admin',
         username: 'admin@email.com',
         password: 'password',
+        roles: ['admin'],
       },
       {
-        userId: 1,
+        userId: '1',
         name: 'John',
         username: 'john@email.com',
         password: 'changeme',
+        roles: ['user'],
       },
       {
-        userId: 2,
+        userId: '2',
         name: 'Chris',
         username: 'chris@email.com',
         password: 'secret',
+        roles: ['user'],
       },
       {
-        userId: 3,
+        userId: '3',
         name: 'Maria',
         username: 'maria@email.com',
         password: 'guess',
+        roles: ['user'],
       },
     ];
   }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { takeWhile } from 'rxjs/operators';
-import { JwtPayload } from '../../../../../shared/jwt-payload.interface';
+import { User } from '../../../../../shared/user';
 import { HelloService } from '../services/hello.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   alive = true;
 
-  user: JwtPayload;
+  user: User;
   greeting: string;
 
   constructor(

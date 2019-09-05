@@ -7,7 +7,7 @@ import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
 import { map, takeUntil, filter } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { JwtPayload } from '../../../../../../shared/jwt-payload.interface';
+import { User } from '../../../../../../shared/user';
 
 @Component({
   selector: 'ngx-header',
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
-  user: JwtPayload;
+  user: User;
 
   themes = [
     {

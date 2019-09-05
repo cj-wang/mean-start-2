@@ -12,6 +12,8 @@ import {
   NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
 } from '@nebular/auth';
 
+import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
+
 import {
   NbAlertModule,
   NbButtonModule,
@@ -25,6 +27,8 @@ import {
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { NgxLoginComponent } from './login/login.component';
 import { NgxOAuth2CallbackComponent } from './oauth2/oauth2-callback.component';
+import { RoleProvider } from './services/role-provider.service';
+import { accessControl } from './access-control';
 
 export const AUTH_PROVIDERS = [
   ...NbAuthModule.forRoot({
@@ -47,6 +51,14 @@ export const AUTH_PROVIDERS = [
   {
     provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
     useValue: tokenInterceptorFilter,
+  },
+
+  NbSecurityModule.forRoot({
+    accessControl,
+  }).providers,
+  {
+    provide: NbRoleProvider,
+    useClass: RoleProvider,
   },
 ];
 
