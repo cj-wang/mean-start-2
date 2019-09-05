@@ -26,5 +26,8 @@
                [picture]="user?.picture">
       </nb-user>
     </nb-action>
+    <nb-action *ngIf="! user" >
+      <a [routerLink]="['/auth/login']">Login</a>
+    </nb-action>
   </nb-actions>
 </div>

@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-body>
     <p *ngIf="user">{{greeting}}</p>
-    <button *ngIf="! user" type="button" class="btn btn-primary" (click)="login()">Login</button>
+    <p *ngIf="! user">Hello, please <a [routerLink]="['/auth/login']">Login</a></p>
   </nb-card-body>
 </nb-card>
