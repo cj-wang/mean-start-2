@@ -27,6 +27,7 @@ import {
 import { NgxAuthRoutingModule } from './auth-routing.module';
 import { NgxLoginComponent } from './login/login.component';
 import { NgxOAuth2CallbackComponent } from './oauth2/oauth2-callback.component';
+import { AuthGuard } from './services/auth-guard.service';
 import { RoleProvider } from './services/role-provider.service';
 import { accessControl } from './access-control';
 
@@ -52,6 +53,7 @@ export const AUTH_PROVIDERS = [
     provide: NB_AUTH_TOKEN_INTERCEPTOR_FILTER,
     useValue: tokenInterceptorFilter,
   },
+  AuthGuard,
 
   NbSecurityModule.forRoot({
     accessControl,
