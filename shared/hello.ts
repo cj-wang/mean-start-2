@@ -1,3 +1,3 @@
-export class Hello {
+export interface Hello {
   greeting: string;
 }
