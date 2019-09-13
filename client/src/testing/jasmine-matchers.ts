@@ -5,7 +5,7 @@
 
 export function addMatchers(): void {
   jasmine.addMatchers({
-    toHaveText: toHaveText
+    toHaveText: toHaveText,
   });
 }
 
@@ -22,7 +22,7 @@ function toHaveText(): jasmine.CustomMatcher {
         const efo = expectationFailOutput ? ` '${expectationFailOutput}'` : '';
         return `Expected element to have text content '${expectedText}' instead of '${a}'${efo}`;
       }
-    }
+    },
   };
 }
 

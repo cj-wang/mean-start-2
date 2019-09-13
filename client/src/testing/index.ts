@@ -1,4 +1,4 @@
-import { DebugElement }           from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { tick, ComponentFixture } from '@angular/core/testing';
 
 export * from './async-observable-helpers';
@@ -21,7 +21,7 @@ export function advance(f: ComponentFixture<any>): void {
  * Although officially deprecated, some browsers (phantom) don't accept the preferred "new Event(eventName)"
  */
 export function newEvent(eventName: string, bubbles = false, cancelable = false) {
-  let evt = document.createEvent('CustomEvent');  // MUST be 'CustomEvent'
+  const evt = document.createEvent('CustomEvent');  // MUST be 'CustomEvent'
   evt.initCustomEvent(eventName, bubbles, cancelable, null);
   return evt;
 }
@@ -30,7 +30,7 @@ export function newEvent(eventName: string, bubbles = false, cancelable = false)
 /** Button events to pass to `DebugElement.triggerEventHandler` for RouterLink event handler */
 export const ButtonClickEvents = {
    left:  { button: 0 },
-   right: { button: 2 }
+   right: { button: 2 },
 };
 
 /** Simulate element click. Defaults to mouse left-button click event. */

@@ -5,7 +5,7 @@ export { RouterLink} from '@angular/router';
 
 /* tslint:disable:directive-class-suffix */
 @Directive({
-  selector: '[routerLink]'
+  selector: '[routerLink]',
 })
 export class RouterLinkDirectiveStub {
   @Input('routerLink') linkParams: any;
@@ -22,8 +22,8 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
-    RouterLinkDirectiveStub
-  ]
+    RouterLinkDirectiveStub,
+  ],
 })
 export class RouterStubsModule {}
 
