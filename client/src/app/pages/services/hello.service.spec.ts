@@ -6,7 +6,7 @@ import { HelloService } from './hello.service';
 describe('HelloService', () => {
   let service: HelloService;
   let httpTestingController: HttpTestingController;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
