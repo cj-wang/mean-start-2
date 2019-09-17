@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NbAuthService, NbAuthJWTToken } from '@nebular/auth';
-import { takeWhile } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { User } from '../../../../../shared/user';
 import { HelloService } from '../services/hello.service';
 
@@ -10,7 +11,7 @@ import { HelloService } from '../services/hello.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  alive = true;
+  protected destroy$ = new Subject<void>();
 
   user: User;
   greeting: string;
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authService.onTokenChange().pipe(
-      takeWhile(() => this.alive),
+      takeUntil(this.destroy$),
     )
     .subscribe(async (token: NbAuthJWTToken) => {
       if (token.isValid()) {
@@ -33,7 +34,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.alive = false;
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }

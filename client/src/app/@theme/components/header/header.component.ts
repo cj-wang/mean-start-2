@@ -81,8 +81,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.menuService.onItemClick()
       .pipe(
-        takeUntil(this.destroy$),
         filter(menu => menu.tag === 'userMenu' && menu.item.title === 'Log out'),
+        takeUntil(this.destroy$),
       )
       .subscribe(async menu => {
         this.router.navigate(['auth/logout']);
